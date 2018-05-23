@@ -1,0 +1,31 @@
+author: A.Y. <atanas.yanew@gmail.com>
+description: Aquarium control project
+# arch: PLATFORM
+version: 1.0
+manifest_version: 2017-05-18
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+config_schema:
+  - ["mqtt.server", "192.168.0.101:1883"]
+  - ["i2c.enable", true]
+
+sources:
+  - src
+
+filesystem:
+  - fs
+
+libs:
+    # common mgos libs
+  - origin: https://github.com/mongoose-os-libs/js-demo-bundle
+    # libs necessary for the current app
+  - origin: https://github.com/mongoose-os-libs/arduino-onewire
+  - origin: https://github.com/mongoose-os-libs/mjs
+
+tags:
+  - js
+  - arduino-core
+  - DS18B20
+  - MQTT
