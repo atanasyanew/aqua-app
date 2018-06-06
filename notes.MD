@@ -155,3 +155,5 @@ create mongoose project with mos.yml file
 fix readme
 add btn events
 change wiring diagram
+
+mos --port mqtt://192.168.0.200:1883/esp8266_2F7F70 call GPIO.Write '{"pin": 16, "value": 1}'
