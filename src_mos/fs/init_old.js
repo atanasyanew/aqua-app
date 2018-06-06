@@ -32,10 +32,10 @@ GPIO.set_mode(relay_3, GPIO.MODE_OUTPUT);
 GPIO.set_mode(relay_4, GPIO.MODE_OUTPUT);
 
 /* GPIOs should be stop at the begining */
-GPIO.write(relay_1, 1);
-GPIO.write(relay_2, 1);
-GPIO.write(relay_3, 1);
-GPIO.write(relay_4, 1);
+GPIO.write(relay_1, 0);
+GPIO.write(relay_2, 0);
+GPIO.write(relay_3, 0);
+GPIO.write(relay_4, 0);
 
 /* MQTT topics */
 let topic = '/aqua/';
@@ -55,7 +55,6 @@ let buttonLogic = function (buttonPin, pinToToggle) {
     print('Published:', ok, topicToPublish, '->', message);
     return message;
 };
-
 
 /* GET TEMPRETURE FROM DS18B20 using api_arduino_onewire.js and ds18b20.js*/
 // Initialize OneWire library
@@ -92,10 +91,10 @@ let searchSens = function () {
 /* PROGRAM EXECUTION */
 
 /* On a button press. btn_1 -> relay_1 */
-GPIO.set_button_handler(btn_1, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 20, function () { buttonLogic(btn_1, relay_1) }, null);
-GPIO.set_button_handler(btn_2, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 20, function () { buttonLogic(btn_2, relay_2) }, null);
-GPIO.set_button_handler(btn_3, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 20, function () { buttonLogic(btn_3, relay_3) }, null);
-GPIO.set_button_handler(btn_4, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 20, function () { buttonLogic(btn_4, relay_4) }, null);
+GPIO.set_button_handler(btn_1, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 500, function () { buttonLogic(btn_1, relay_1) }, null);
+GPIO.set_button_handler(btn_2, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 500, function () { buttonLogic(btn_2, relay_2) }, null);
+GPIO.set_button_handler(btn_3, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 500, function () { buttonLogic(btn_3, relay_3) }, null);
+GPIO.set_button_handler(btn_4, GPIO.PULL_UP, GPIO.INT_EDGE_NEG, 500, function () { buttonLogic(btn_4, relay_4) }, null);
 
 /* MQTT subscribe for toggle the relays. btn_1 -> relay_1 */
 MQTT.sub((topic + 'controls/'), function (conn, topic, responseMsg) {
@@ -121,8 +120,9 @@ Timer.set((1000 * 60), Timer.REPEAT, function () {
     }, null);
 }, null);
 
-/* Publish temp every 5min, for 24H = 480 chart points */
-Timer.set((1000 * 60 * 5), Timer.REPEAT, function () {
+
+/* Publish temp every 3min, for 24H = 480 chart points */
+Timer.set((1000 * 5), Timer.REPEAT, function () {
     if (n === 0) {
         if ((n = searchSens()) === 0) { print('No device found'); }
     }
@@ -138,4 +138,3 @@ Timer.set((1000 * 60 * 5), Timer.REPEAT, function () {
         print('Published:', ok, topicToPublish, '->', msgTempAqua);
     }
 }, null);
-
