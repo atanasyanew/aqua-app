@@ -7,6 +7,6 @@ The whole project allows me to control and monitoring remotely the entire aquari
 
 ### Screenshots
 
-![aqua-dashboard-ui](/docs/aqua-dashboard-ui-PC.PNG "Dashboard PC")
-![aqua-dashboard-ui-tablet](/docs/aqua-dashboard-ui-tablet.png "Dashboard Tablet")
-![wiring-circuit](/docs/wiring-circuit.PNG "Wiring circuit")
+![aqua-dashboard-ui](docs/aqua-dashboard-ui-PC.PNG "Dashboard PC")
+![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-tablet.png "Dashboard Tablet")
+![wiring-circuit](docs/wiring-circuit.PNG "Wiring circuit")
