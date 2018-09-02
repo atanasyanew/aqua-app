@@ -141,7 +141,7 @@ Features
 
 ## Wiring
 
-Wiring block diagram
+Block diagram
 
 ```mermaid
 graph TB
@@ -153,6 +153,8 @@ graph TB
     RShield[Relay module] -- on/off -->  outlet3[Outlet 3]
     RShield[Relay module] -- on/off -->  outlet4[Outlet 4]
 ```
+
+![wiring-block-diagram](/docs/wiring-block-diagram.PNG "block-diagram")
 
 Electrical schematic. The figure below shows the electrical wiring circuit of the hardware components
 
