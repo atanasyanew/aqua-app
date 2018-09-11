@@ -511,6 +511,65 @@
     }
    }
   },
+  "node-red-contrib-ibm-watson-iot": {
+   "name": "node-red-contrib-ibm-watson-iot",
+   "version": "0.2.8",
+   "local": true,
+   "nodes": {
+    "wiotp": {
+     "name": "wiotp",
+     "types": [
+      "wiotp-credentials",
+      "wiotp in",
+      "wiotp out"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-ibm-watson-iot",
+     "file": "/data/node_modules/node-red-contrib-ibm-watson-iot/application/wiotp.js"
+    }
+   }
+  },
+  "node-red-contrib-mqtt-broker": {
+   "name": "node-red-contrib-mqtt-broker",
+   "version": "0.2.4",
+   "local": true,
+   "nodes": {
+    "mosca-mqtt-broker": {
+     "name": "mosca-mqtt-broker",
+     "types": [
+      "mosca in"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-mqtt-broker",
+     "file": "/data/node_modules/node-red-contrib-mqtt-broker/mosca.js"
+    }
+   }
+  },
+  "node-red-contrib-os": {
+   "name": "node-red-contrib-os",
+   "version": "0.1.7",
+   "local": true,
+   "nodes": {
+    "os": {
+     "name": "os",
+     "types": [
+      "OS",
+      "Drives",
+      "Uptime",
+      "CPUs",
+      "Loadavg",
+      "Memory",
+      "NetworkIntf"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-os",
+     "file": "/data/node_modules/node-red-contrib-os/os/os.js"
+    }
+   }
+  },
   "node-red-dashboard": {
    "name": "node-red-dashboard",
    "version": "2.9.8",
@@ -732,65 +791,6 @@
      "local": true,
      "module": "node-red-node-smooth",
      "file": "/data/node_modules/node-red-node-smooth/17-smooth.js"
-    }
-   }
-  },
-  "node-red-contrib-ibm-watson-iot": {
-   "name": "node-red-contrib-ibm-watson-iot",
-   "version": "0.2.8",
-   "local": true,
-   "nodes": {
-    "wiotp": {
-     "name": "wiotp",
-     "types": [
-      "wiotp-credentials",
-      "wiotp in",
-      "wiotp out"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-ibm-watson-iot",
-     "file": "/data/node_modules/node-red-contrib-ibm-watson-iot/application/wiotp.js"
-    }
-   }
-  },
-  "node-red-contrib-mqtt-broker": {
-   "name": "node-red-contrib-mqtt-broker",
-   "version": "0.2.4",
-   "local": true,
-   "nodes": {
-    "mosca-mqtt-broker": {
-     "name": "mosca-mqtt-broker",
-     "types": [
-      "mosca in"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-mqtt-broker",
-     "file": "/data/node_modules/node-red-contrib-mqtt-broker/mosca.js"
-    }
-   }
-  },
-  "node-red-contrib-os": {
-   "name": "node-red-contrib-os",
-   "version": "0.1.7",
-   "local": true,
-   "nodes": {
-    "os": {
-     "name": "os",
-     "types": [
-      "OS",
-      "Drives",
-      "Uptime",
-      "CPUs",
-      "Loadavg",
-      "Memory",
-      "NetworkIntf"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-contrib-os",
-     "file": "/data/node_modules/node-red-contrib-os/os/os.js"
     }
    }
   },
