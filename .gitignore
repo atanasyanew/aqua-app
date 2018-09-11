@@ -6,15 +6,15 @@ yarn-debug.log*
 yarn-error.log*
 
 # Mongoose OS build and deps
-src-microcontroller/build
-src-microcontroller/deps
+src-microcontroller/build/
+src-microcontroller/deps/
 src-microcontroller/mos.exe
 # Ignroe the last build
 !src-microcontroller/fw.zip
 !src-microcontroller/build.log
 
 # Nod-RED
-src-nodered/data/node_modules
+src-nodered/data/node_modules/
 
 
 # Runtime data
