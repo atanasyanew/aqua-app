@@ -1,0 +1,891 @@
+- - i2c
+  - o
+  - title: I2C settings
+- - i2c.enable
+  - b
+  - false
+  - title: Enable I2C
+- - i2c.freq
+  - i
+  - 100000
+  - title: Clock frequency
+- - i2c.debug
+  - b
+  - false
+  - title: Debug I2C bus activity
+- - i2c.sda_gpio
+  - i
+  - 0
+  - title: GPIO to use for SDA
+- - i2c.scl_gpio
+  - i
+  - 0
+  - title: GPIO to use for SCL
+- - i2c.sda_gpio
+  - 12
+- - i2c.scl_gpio
+  - 14
+- - sys.atca
+  - o
+  - title: CryptoAuthLib configuration
+- - sys.atca.enable
+  - b
+  - false
+  - title: Enable the chip
+- - sys.atca.i2c_addr
+  - i
+  - 96
+  - title: I2C address of the chip
+- - sys.atca.ecdh_slots_mask
+  - i
+  - 12
+  - title: Which slots can be used for ECDH (bitmask)
+- - mqtt
+  - o
+  - title: MQTT settings
+- - mqtt.enable
+  - b
+  - false
+  - title: Enable MQTT
+- - mqtt.server
+  - s
+  - iot.eclipse.org:1883
+  - title: MQTT server
+- - mqtt.client_id
+  - s
+  - ""
+  - title: ClientID t send to the broker. Defaults to device.id.
+- - mqtt.user
+  - s
+  - ""
+  - title: User name
+- - mqtt.pass
+  - s
+  - ""
+  - title: Password
+- - mqtt.reconnect_timeout_min
+  - d
+  - 2
+  - title: Starting reconnect timeout
+- - mqtt.reconnect_timeout_max
+  - d
+  - 60
+  - title: Maximum reconnect timeout
+- - mqtt.ssl_cert
+  - s
+  - ""
+  - title: Client certificate to present to the server
+- - mqtt.ssl_key
+  - s
+  - ""
+  - title: Private key corresponding to the certificate
+- - mqtt.ssl_ca_cert
+  - s
+  - ""
+  - title: Verify server certificate using this CA bundle
+- - mqtt.ssl_cipher_suites
+  - s
+  - ""
+  - title: Cipher suites to offer to the server
+- - mqtt.ssl_psk_identity
+  - s
+  - ""
+  - title: PSK identity (must specify PSK cipher suites)
+- - mqtt.ssl_psk_key
+  - s
+  - ""
+  - title: PSK key
+- - mqtt.clean_session
+  - b
+  - true
+  - title: Clean Session
+- - mqtt.keep_alive
+  - i
+  - 60
+  - title: Keep alive interval
+- - mqtt.will_topic
+  - s
+  - ""
+  - title: Will topic
+- - mqtt.will_message
+  - s
+  - ""
+  - title: Will message
+- - mqtt.max_qos
+  - i
+  - 2
+  - title: Limit QoS of outgoing messages to at most this
+- - mqtt.recv_mbuf_limit
+  - i
+  - 3072
+  - title: Limit recv buffer size
+- - mqtt1
+  - o
+  - title: MQTT settings
+- - mqtt1.enable
+  - b
+  - false
+  - title: Enable MQTT
+- - mqtt1.server
+  - s
+  - iot.eclipse.org:1883
+  - title: MQTT server
+- - mqtt1.client_id
+  - s
+  - ""
+  - title: ClientID t send to the broker. Defaults to device.id.
+- - mqtt1.user
+  - s
+  - ""
+  - title: User name
+- - mqtt1.pass
+  - s
+  - ""
+  - title: Password
+- - mqtt1.reconnect_timeout_min
+  - d
+  - 2
+  - title: Starting reconnect timeout
+- - mqtt1.reconnect_timeout_max
+  - d
+  - 60
+  - title: Maximum reconnect timeout
+- - mqtt1.ssl_cert
+  - s
+  - ""
+  - title: Client certificate to present to the server
+- - mqtt1.ssl_key
+  - s
+  - ""
+  - title: Private key corresponding to the certificate
+- - mqtt1.ssl_ca_cert
+  - s
+  - ""
+  - title: Verify server certificate using this CA bundle
+- - mqtt1.ssl_cipher_suites
+  - s
+  - ""
+  - title: Cipher suites to offer to the server
+- - mqtt1.ssl_psk_identity
+  - s
+  - ""
+  - title: PSK identity (must specify PSK cipher suites)
+- - mqtt1.ssl_psk_key
+  - s
+  - ""
+  - title: PSK key
+- - mqtt1.clean_session
+  - b
+  - true
+  - title: Clean Session
+- - mqtt1.keep_alive
+  - i
+  - 60
+  - title: Keep alive interval
+- - mqtt1.will_topic
+  - s
+  - ""
+  - title: Will topic
+- - mqtt1.will_message
+  - s
+  - ""
+  - title: Will message
+- - mqtt1.max_qos
+  - i
+  - 2
+  - title: Limit QoS of outgoing messages to at most this
+- - mqtt1.recv_mbuf_limit
+  - i
+  - 3072
+  - title: Limit recv buffer size
+- - debug.stdout_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDOUT to
+- - debug.stderr_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDERR to
+- - shadow
+  - o
+  - title: Device shadow settings
+- - shadow.enable
+  - b
+  - true
+  - title: Enable device shadow functionality
+- - shadow.lib
+  - s
+  - ""
+  - title: Preferred shadow lib, e.g. aws, dash, gcp
+- - aws
+  - o
+  - title: AWS settings
+- - aws.thing_name
+  - s
+  - ""
+  - title: Set thing name. If not specified, device.id is used
+- - aws.greengrass
+  - o
+  - title: AWS Greengrass settings
+- - aws.greengrass.enable
+  - b
+  - false
+  - title: Enable AWS Greengrass service
+- - aws.greengrass.reconnect_timeout_min
+  - i
+  - 2
+  - title: Starting reconnect timeout
+- - aws.greengrass.reconnect_timeout_max
+  - i
+  - 60
+  - title: Maximum reconnect timeout
+- - sntp
+  - o
+  - title: SNTP settings
+- - sntp.enable
+  - b
+  - true
+  - title: Enable SNTP
+- - sntp.server
+  - s
+  - time.google.com
+  - title: Server address
+- - sntp.retry_min
+  - i
+  - 1
+  - title: Minimum retry interval
+- - sntp.retry_max
+  - i
+  - 30
+  - title: Maximum retry interval
+- - sntp.update_interval
+  - i
+  - 7200
+  - title: Update interval. If 0, performs a one-off sync
+- - azure
+  - o
+  - title: Azure IoT Hub settings
+- - azure.enable
+  - b
+  - false
+  - title: Enable Azure IoT Hub connection
+- - azure.cs
+  - s
+  - ""
+  - title: Connection string, for SAS auth
+- - azure.token_ttl
+  - i
+  - 3600
+  - title: Life time of the SAS token
+- - azure.host_name
+  - s
+  - ""
+  - title: IoT hub host name
+- - azure.device_id
+  - s
+  - ""
+  - title: Device ID
+- - azure.cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - azure.key
+  - s
+  - ""
+  - title: X.509 private key
+- - azure.enable_cm
+  - b
+  - true
+  - title: Subscribe to the cloud messages topic
+- - azure.enable_dm
+  - b
+  - true
+  - title: Subscribe to the direct method invocation topic
+- - update
+  - o
+  - title: Firmware updater
+- - update.timeout
+  - i
+  - 300
+  - title: Update will be aborted if it does not finish within this time
+- - update.commit_timeout
+  - i
+  - title: After applying update, wait for commit up to this long
+- - update.url
+  - s
+  - title: Fetch updates form here
+- - update.interval
+  - i
+  - title: Check for updates this often
+- - update.ssl_ca_file
+  - s
+  - ca.pem
+  - title: TLS CA file
+- - update.ssl_client_cert_file
+  - s
+  - title: TLS client cert file
+- - update.ssl_server_name
+  - s
+  - title: TLS Server Name
+- - shadow.ota_enable
+  - b
+  - true
+  - title: Enable OTA via shadow
+- - shadow.autocommit
+  - b
+  - false
+  - title: Autocommit OTA if the shadow connection is successful
+- - rpc
+  - o
+  - title: RPC settings
+- - rpc.enable
+  - b
+  - true
+  - title: Enable RPC
+- - rpc.max_frame_size
+  - i
+  - 4096
+  - title: Max Frame Size
+- - rpc.max_queue_length
+  - i
+  - 25
+  - title: Max Queue Length
+- - rpc.default_out_channel_idle_close_timeout
+  - i
+  - 10
+  - title: Default idle close timeout for outbound channels
+- - rpc.acl_file
+  - s
+  - title: File with RPC ACL JSON
+- - rpc.auth_domain
+  - s
+  - title: Realm to use for digest authentication
+- - rpc.auth_file
+  - s
+  - title: File with user credentials in the htdigest format
+- - rpc.ws
+  - o
+  - title: RPC over WebSocket settings
+- - rpc.ws.enable
+  - b
+  - true
+  - title: Enable RPC over WebSocket
+- - rpc.ws.server_address
+  - s
+  - ""
+  - title: Cloud server address
+- - rpc.ws.reconnect_interval_min
+  - i
+  - 1
+  - title: Minimal reconnect interval
+- - rpc.ws.reconnect_interval_max
+  - i
+  - 60
+  - title: Maximal reconnect interval
+- - rpc.ws.ssl_server_name
+  - s
+  - title: TLS Server Name
+- - rpc.ws.ssl_ca_file
+  - s
+  - title: TLS CA file
+- - rpc.ws.ssl_client_cert_file
+  - s
+  - title: TLS client cert file
+- - dash
+  - o
+  - title: Device management dashboard settings
+- - dash.enable
+  - b
+  - false
+  - title: Enable
+- - dash.token
+  - s
+  - ""
+  - title: Access token
+- - dash.server
+  - s
+  - wss://dash.mongoose-os.com/api/v2/rpc
+  - title: Server address
+- - dash.ca_file
+  - s
+  - ca.pem
+  - title: CA file
+- - dash.send_logs
+  - b
+  - true
+  - title: Send logs
+- - dash.stats_interval
+  - i
+  - 10
+  - title: Stats interval in seconds. Set to 0 to disable
+- - dash.ota_chunk_size
+  - i
+  - 1024
+  - title: OTA download chunk size in bytes
+- - http
+  - o
+  - title: HTTP Server
+- - http.enable
+  - b
+  - true
+  - title: Enable HTTP Server
+- - http.listen_addr
+  - s
+  - "80"
+  - title: Listening port / address
+- - http.document_root
+  - s
+  - /
+  - title: Root for serving files. Setting to empty disables file serving.
+- - http.ssl_cert
+  - s
+  - title: Turn on SSL on the listener, use this cert
+- - http.ssl_key
+  - s
+  - title: SSL key to use
+- - http.ssl_ca_cert
+  - s
+  - title: Verify clients this CA bundle
+- - http.upload_acl
+  - s
+  - '*'
+  - title: Upload file ACL
+- - http.hidden_files
+  - s
+  - title: Hidden file pattern
+- - http.auth_domain
+  - s
+  - title: Enable authentication of all HTTP requests
+- - http.auth_file
+  - s
+  - title: Password file to use for auth
+- - dns_sd
+  - o
+  - title: DNS-SD service discovery
+- - dns_sd.enable
+  - b
+  - false
+  - title: Enable service discovery
+- - dns_sd.host_name
+  - s
+  - mOS-??????
+  - title: DNS-SD host name. '?' chars will be expanded with MAC address hex digits
+- - dns_sd.txt
+  - s
+  - ""
+  - title: Extra comma-separated key=value pairs to put into the TXT service record
+- - dns_sd.ttl
+  - i
+  - 120
+  - title: Time-to-live in seconds
+- - dns_sd.host_name
+  - mOS-esp8266-??????
+- - gcp
+  - o
+  - title: GCP IOT settings
+- - gcp.enable
+  - b
+  - false
+  - title: Enable GCP IOT
+- - gcp.project
+  - s
+  - ""
+  - title: Project ID
+- - gcp.region
+  - s
+  - ""
+  - title: Region name
+- - gcp.registry
+  - s
+  - ""
+  - title: Device registry name
+- - gcp.device
+  - s
+  - ""
+  - title: Device name
+- - gcp.key
+  - s
+  - ""
+  - title: Private key to use for token signing
+- - gcp.token_ttl
+  - i
+  - 3600
+  - title: Life time of the token
+- - update.enable_post
+  - b
+  - true
+  - title: Enable POST updates
+- - provision
+  - o
+  - title: Provision library settings
+- - provision.button
+  - o
+  - title: Reset button settings
+- - provision.button.pin
+  - i
+  - -1
+  - title: Reset button GPIO pin
+- - provision.button.pull
+  - i
+  - 1
+  - title: 'Pull mode: 1 - up, 2 - down'
+- - provision.button.hold_ms
+  - i
+  - 0
+  - title: Hold interval in milliseconds. -1 to disable, 0 to reset on reboot, > 0
+      to reset on long press.
+- - rpc.azure
+  - o
+  - title: RPC over Azure settings
+- - rpc.enable_dm
+  - b
+  - true
+  - title: Enable RPC over Azure Direct Method calls
+- - rpc.mqtt
+  - o
+  - title: RPC over MQTT settings
+- - rpc.mqtt.enable
+  - b
+  - true
+  - title: Enable RPC over MQTT
+- - rpc.mqtt.pub_topic
+  - s
+  - '%.*s/rpc'
+  - title: Topic to post outgoing frames to. Argument to the format string is the
+      frame's destination.
+- - rpc.mqtt.sub_topic
+  - s
+  - '%.*s/rpc'
+  - title: Topic to accept incoming frames on. Argument to the format string is device.id
+- - rpc.mqtt.sub_wc
+  - b
+  - true
+  - title: Also subscribe to wildcard topic
+- - rpc.mqtt.qos
+  - i
+  - 1
+  - title: QoS for pub and sub
+- - wifi
+  - o
+  - hide: true
+- - wifi.ap
+  - o
+  - title: WiFi Access Point
+- - wifi.ap.enable
+  - b
+  - true
+  - title: Enable
+- - wifi.ap.ssid
+  - s
+  - Mongoose_??????
+  - title: SSID
+- - wifi.ap.pass
+  - s
+  - Mongoose
+  - title: Password
+    type: password
+- - wifi.ap.hidden
+  - b
+  - false
+  - title: Hide SSID
+- - wifi.ap.channel
+  - i
+  - 6
+  - title: Channel
+- - wifi.ap.max_connections
+  - i
+  - 10
+  - title: Max connections
+- - wifi.ap.ip
+  - s
+  - 192.168.4.1
+  - title: IP address
+- - wifi.ap.netmask
+  - s
+  - 255.255.255.0
+  - title: Network Mask
+- - wifi.ap.gw
+  - s
+  - 192.168.4.1
+  - title: Default Gateway
+- - wifi.ap.dhcp_start
+  - s
+  - 192.168.4.2
+  - title: DHCP Start Address
+- - wifi.ap.dhcp_end
+  - s
+  - 192.168.4.100
+  - title: DHCP End Address
+- - wifi.ap.trigger_on_gpio
+  - i
+  - -1
+  - title: Trigger AP on low GPIO
+- - wifi.ap.disable_after
+  - i
+  - 0
+  - title: If > 0, will disable itself after the specified number of seconds
+- - wifi.ap.hostname
+  - s
+  - ""
+  - title: If not empty, DNS server will resolve given host name to the IP address
+      of AP
+- - wifi.sta
+  - o
+  - title: WiFi Station
+- - wifi.sta.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta.ssid
+  - s
+  - title: SSID
+- - wifi.sta.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta1
+  - o
+  - title: WiFi Station
+- - wifi.sta1.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta1.ssid
+  - s
+  - title: SSID
+- - wifi.sta1.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta1.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta1.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta1.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta1.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta1.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta1.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta1.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta1.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta1.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta1.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta2
+  - o
+  - title: WiFi Station
+- - wifi.sta2.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta2.ssid
+  - s
+  - title: SSID
+- - wifi.sta2.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta2.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta2.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta2.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta2.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta2.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta2.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta2.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta2.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta2.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta2.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta_cfg_idx
+  - i
+  - 0
+  - title: WiFi station config index to use, 0, 1 or 2
+- - wifi.sta_connect_timeout
+  - i
+  - 30
+  - title: Timeout for connection, seconds
+- - wifi.ap.keep_enabled
+  - b
+  - true
+  - title: Keep AP enabled when station is on
+- - rpc.uart
+  - o
+  - title: RPC-over-UART settings
+- - rpc.uart.uart_no
+  - i
+  - 0
+  - title: UART number (-1 to disable)
+- - rpc.uart.baud_rate
+  - i
+  - 115200
+  - title: Baud rate
+- - rpc.uart.fc_type
+  - i
+  - 2
+  - title: 'Flow control: 0 - none, 1 - CTS/RTS, 2 - XON/XOFF'
+- - spi
+  - o
+  - title: SPI settings
+- - spi.enable
+  - b
+  - false
+  - title: Enable SPI
+- - spi.debug
+  - b
+  - false
+  - title: Debug SPI bus activity
+- - spi.miso_gpio
+  - i
+  - -1
+  - title: GPIO to use for MISO
+- - spi.mosi_gpio
+  - i
+  - -1
+  - title: GPIO to use for MOSI
+- - spi.sclk_gpio
+  - i
+  - -1
+  - title: GPIO to use for SCLK
+- - spi.cs0_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS0
+- - spi.cs1_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS1
+- - spi.cs2_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS2
+- - spi.miso_gpio
+  - 12
+- - spi.mosi_gpio
+  - 13
+- - spi.sclk_gpio
+  - 14
+- - spi.cs0_gpio
+  - 15
+- - watson
+  - o
+  - title: IBM Watson IoT Platform settings
+- - watson.enable
+  - b
+  - false
+  - title: Enable IBM Watson IoT Platform connection
+- - watson.host_name
+  - s
+  - ""
+  - title: Host name
+- - watson.client_id
+  - s
+  - ""
+  - title: ID string, including device type and org
+- - watson.token
+  - s
+  - ""
+  - title: Auth token
+- - watson.cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - watson.key
+  - s
+  - ""
+  - title: X.509 private key
+- - watson.ca_cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - pins
+  - o
+  - title: Pins layout
+- - pins.led
+  - i
+  - -1
+  - title: LED GPIO pin
+- - pins.button
+  - i
+  - -1
+  - title: Button GPIO pin
+- - pins.button_pull_up
+  - b
+  - true
+  - title: True if button is pulled up when inactive
+- - pins.led
+  - 2
+- - pins.button
+  - 0
+- - mjs
+  - o
+  - title: mJS settings
+- - mjs.generate_jsc
+  - b
+  - true
+  - title: Generate .jsc file when executing any .js file
+- - mqtt.server
+  - 192.168.0.100:1883
+- - mqtt.enable
+  - true

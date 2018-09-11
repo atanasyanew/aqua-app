@@ -181,16 +181,11 @@ For the frontend part or the user interface style is based on Google's "[Materia
 |:-:|:-:|:-:|
 | ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone2.jpg "Dashboard phone")  | ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone3.jpg "Dashboard phone")  | ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone1.jpg "Dashboard phone")  |
 
-
 <!-- ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone2.jpg "Dashboard phone")
 
 ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone3.jpg "Dashboard phone")
 
 ![aqua-dashboard-ui-tablet](docs/aqua-dashboard-ui-phone1.jpg "Dashboard phone") -->
-
-
-
-
 
 <!--
 

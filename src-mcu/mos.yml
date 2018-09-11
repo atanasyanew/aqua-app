@@ -1,0 +1,35 @@
+author: A.Y. <atanas.yanew@gmail.com>
+description: Aquarium control project
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+# Custom configuration entries, settable via "device configuration"
+config_schema:
+  - ["mqtt.server", "192.168.0.100:1883"]
+  - ["mqtt.enable", true]
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+# List of dirs. Files from these dirs will be copied to the device filesystem
+filesystem:
+  - fs
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/js-demo-bundle
+  - origin: https://github.com/mongoose-os-libs/arduino-onewire
+  - origin: https://github.com/mongoose-os-libs/mjs
+
+# Optional. List of tags for online search.
+tags:
+  - js
+  - arduino-core
+  - DS18B20
+  - MQTT
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2018-08-29

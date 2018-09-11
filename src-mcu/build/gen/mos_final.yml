@@ -1,0 +1,1925 @@
+type: app
+version: "1.0"
+platform: esp8266
+platforms:
+- esp32
+- esp8266
+author: A.Y. <atanas.yanew@gmail.com>
+description: Aquarium control project
+sources:
+- C:\Users\atana\Desktop\src-mcu\build\gen\mgos_deps_init.c
+- C:\Users\atana\Desktop\src-mcu\deps\adc\esp8266\src\esp_adc.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\mgos_vfs.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\mgos_vfs_dev.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_flash_writer.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_fs.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_vfs_dev_sysflash.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-part\src\mgos_vfs_dev_part.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\mgos_vfs_fs_spiffs.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_cache.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_check.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_gc.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_hydrogen.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_nucleus.c
+- C:\Users\atana\Desktop\src-mcu\deps\core\src\mgos_core.c
+- C:\Users\atana\Desktop\src-mcu\deps\core\src\esp8266\esp_rboot.c
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\Print.cpp
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\WString.cpp
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\mgos_arduino.cpp
+- C:\Users\atana\Desktop\src-mcu\deps\onewire\src\mgos_onewire.c
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\mgos_arduino_onewire_c.c
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\OneWire.cpp
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\mgos_arduino_onewire.cpp
+- C:\Users\atana\Desktop\src-mcu\deps\i2c\src\mgos_i2c.c
+- C:\Users\atana\Desktop\src-mcu\deps\i2c\src\common_gpio\mgos_i2c_gpio.c
+- C:\Users\atana\Desktop\src-mcu\deps\atca\src\mgos_atca.c
+- C:\Users\atana\Desktop\src-mcu\deps\mqtt\src\mgos_mqtt.c
+- C:\Users\atana\Desktop\src-mcu\deps\shadow\src\mgos_shadow.c
+- C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws.c
+- C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws_greengrass.c
+- C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws_shadow.c
+- C:\Users\atana\Desktop\src-mcu\deps\sntp\src\mgos_sntp.c
+- C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure.c
+- C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_cm.c
+- C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_dm.c
+- C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_sas.c
+- C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_shadow.c
+- C:\Users\atana\Desktop\src-mcu\deps\ota-common\src\mgos_updater_common.c
+- C:\Users\atana\Desktop\src-mcu\deps\ota-common\src\esp8266\esp_updater.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel_http.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel_ws.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mgos_rpc.c
+- C:\Users\atana\Desktop\src-mcu\deps\dht\src\mgos_dht.c
+- C:\Users\atana\Desktop\src-mcu\deps\http-server\src\mgos_http_server.c
+- C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\mgos_dns_sd.c
+- C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\mgos_mdns.c
+- C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\lwip\lwip_mdns.c
+- C:\Users\atana\Desktop\src-mcu\deps\gcp\src\mgos_gcp.c
+- C:\Users\atana\Desktop\src-mcu\deps\neopixel\src\mgos_neopixel.c
+- C:\Users\atana\Desktop\src-mcu\deps\provision\src\mgos_provision.c
+- C:\Users\atana\Desktop\src-mcu\deps\pwm\src\mgos_pwm.c
+- C:\Users\atana\Desktop\src-mcu\deps\pwm\src\mgos_pwm_rgb_led.c
+- C:\Users\atana\Desktop\src-mcu\deps\pwm\src\esp8266\esp_pwm.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-azure\src\mgos_rpc_channel_azure_dm.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-loopback\src\mg_rpc_channel_loopback.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-mqtt\src\mgos_rpc_channel_mqtt.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-atca\src\mgos_atca_service.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-config\src\mgos_service_config.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-fs\src\mgos_service_filesystem.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-gpio\src\mgos_gpio_service.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-i2c\src\mgos_i2c_service.c
+- C:\Users\atana\Desktop\src-mcu\deps\wifi\src\mgos_wifi.c
+- C:\Users\atana\Desktop\src-mcu\deps\wifi\src\mjs_wifi.c
+- C:\Users\atana\Desktop\src-mcu\deps\wifi\esp8266\src\esp_wifi.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-wifi\src\mgos_rpc_service_wifi.c
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-uart\src\mgos_rpc_channel_uart.c
+- C:\Users\atana\Desktop\src-mcu\deps\spi\src\mgos_spi.c
+- C:\Users\atana\Desktop\src-mcu\deps\spi\src\mgos_spi_mjs.c
+- C:\Users\atana\Desktop\src-mcu\deps\spi\src\common_gpio\mgos_spi_gpio.c
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-spi-flash\src\mgos_vfs_dev_spi_flash.c
+- C:\Users\atana\Desktop\src-mcu\deps\watson\src\mgos_watson.c
+- C:\Users\atana\Desktop\src-mcu\deps\demo-bundle\src\mgos_demo_bundle.c
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\src\mos_mjs.c
+- C:\Users\atana\Desktop\src-mcu\deps\modules\mjs\mjs.c
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\esp8266\src\esp8266_mjs.c
+- C:\Users\atana\Desktop\src-mcu\deps\js-demo-bundle\src\mgos_js_demo_bundle.c
+includes:
+- C:\Users\atana\Desktop\src-mcu\deps\adc\include
+- C:\Users\atana\Desktop\src-mcu\deps\adc\esp8266\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-common\include\esp8266
+- C:\Users\atana\Desktop\src-mcu\deps\mongoose\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-part\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\include\spiffs
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\include\esp8266
+- C:\Users\atana\Desktop\src-mcu\deps\core\include
+- C:\Users\atana\Desktop\src-mcu\deps\core\include\esp8266
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\include
+- C:\Users\atana\Desktop\src-mcu\deps\onewire\include
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\include
+- C:\Users\atana\Desktop\src-mcu\deps\i2c\include
+- C:\Users\atana\Desktop\src-mcu\deps\atca\include
+- C:\Users\atana\Desktop\src-mcu\deps\mqtt\include
+- C:\Users\atana\Desktop\src-mcu\deps\shadow\include
+- C:\Users\atana\Desktop\src-mcu\deps\aws\include
+- C:\Users\atana\Desktop\src-mcu\deps\azure\include
+- C:\Users\atana\Desktop\src-mcu\deps\ota-common\include
+- C:\Users\atana\Desktop\src-mcu\deps\ota-http-client\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\include\mg_rpc
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\include
+- C:\Users\atana\Desktop\src-mcu\deps\dash\include
+- C:\Users\atana\Desktop\src-mcu\deps\dht\include
+- C:\Users\atana\Desktop\src-mcu\deps\http-server\include
+- C:\Users\atana\Desktop\src-mcu\deps\dns-sd\include
+- C:\Users\atana\Desktop\src-mcu\deps\neopixel\include
+- C:\Users\atana\Desktop\src-mcu\deps\pwm\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-loopback\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-mqtt\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-config\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-fs\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-gpio\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-i2c\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-ota\include
+- C:\Users\atana\Desktop\src-mcu\deps\wifi\include
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-uart\include
+- C:\Users\atana\Desktop\src-mcu\deps\spi\include
+- C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-spi-flash\include
+- C:\Users\atana\Desktop\src-mcu\deps\watson\include
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\include
+filesystem:
+- C:\Users\atana\Desktop\src-mcu\deps\ca-bundle\fs\ca.pem
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_bitbang.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_config.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_events.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_gpio.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_grove.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_http.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_log.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_net.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_sys.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_timer.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\api_uart.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\fs\init.js
+- C:\Users\atana\Desktop\src-mcu\deps\modules\mjs\mjs\lib\api_dataview.js
+- C:\Users\atana\Desktop\src-mcu\deps\modules\mjs\mjs\lib\api_file.js
+- C:\Users\atana\Desktop\src-mcu\deps\modules\mjs\mjs\lib\api_math.js
+- C:\Users\atana\Desktop\src-mcu\deps\adc\mjs_fs\api_adc.js
+- C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\mjs_fs\api_arduino_onewire.js
+- C:\Users\atana\Desktop\src-mcu\deps\i2c\mjs_fs\api_i2c.js
+- C:\Users\atana\Desktop\src-mcu\deps\mqtt\mjs_fs\api_mqtt.js
+- C:\Users\atana\Desktop\src-mcu\deps\shadow\mjs_fs\api_shadow.js
+- C:\Users\atana\Desktop\src-mcu\deps\aws\mjs_fs\api_aws.js
+- C:\Users\atana\Desktop\src-mcu\deps\azure\mjs_fs\api_azure.js
+- C:\Users\atana\Desktop\src-mcu\deps\ota-http-client\mjs_fs\api_ota.js
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-common\mjs_fs\api_rpc.js
+- C:\Users\atana\Desktop\src-mcu\deps\dht\mjs_fs\api_dht.js
+- C:\Users\atana\Desktop\src-mcu\deps\neopixel\mjs_fs\api_neopixel.js
+- C:\Users\atana\Desktop\src-mcu\deps\pwm\mjs_fs\api_pwm.js
+- C:\Users\atana\Desktop\src-mcu\deps\wifi\mjs_fs\api_wifi.js
+- C:\Users\atana\Desktop\src-mcu\deps\spi\mjs_fs\api_spi.js
+- C:\Users\atana\Desktop\src-mcu\deps\watson\mjs_fs\api_watson.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\esp8266\fs\api_arch_uart.js
+- C:\Users\atana\Desktop\src-mcu\deps\mjs\esp8266\fs\api_esp8266.js
+- C:\Users\atana\Desktop\src-mcu\fs\ds18b20.js
+- C:\Users\atana\Desktop\src-mcu\fs\init.js
+binary_libs:
+- C:\Users\atana\Desktop\src-mcu\deps\mongoose\lib\esp8266\libmongoose.a
+- C:\Users\atana\Desktop\src-mcu\deps\ota-http-client\lib\esp8266\libota-http-client.a
+- C:\Users\atana\Desktop\src-mcu\deps\ota-shadow\lib\esp8266\libota-shadow.a
+- C:\Users\atana\Desktop\src-mcu\deps\dash\lib\esp8266\libdash.a
+- C:\Users\atana\Desktop\src-mcu\deps\ota-http-server\lib\esp8266\libota-http-server.a
+- C:\Users\atana\Desktop\src-mcu\deps\rpc-service-ota\lib\esp8266\librpc-service-ota.a
+modules:
+- origin: https://github.com/cesanta/mjs
+  location: https://github.com/cesanta/mjs
+  name: mjs_module
+config_schema:
+- - i2c
+  - o
+  - title: I2C settings
+- - i2c.enable
+  - b
+  - false
+  - title: Enable I2C
+- - i2c.freq
+  - i
+  - 100000
+  - title: Clock frequency
+- - i2c.debug
+  - b
+  - false
+  - title: Debug I2C bus activity
+- - i2c.sda_gpio
+  - i
+  - 0
+  - title: GPIO to use for SDA
+- - i2c.scl_gpio
+  - i
+  - 0
+  - title: GPIO to use for SCL
+- - i2c.sda_gpio
+  - 12
+- - i2c.scl_gpio
+  - 14
+- - sys.atca
+  - o
+  - title: CryptoAuthLib configuration
+- - sys.atca.enable
+  - b
+  - false
+  - title: Enable the chip
+- - sys.atca.i2c_addr
+  - i
+  - 96
+  - title: I2C address of the chip
+- - sys.atca.ecdh_slots_mask
+  - i
+  - 12
+  - title: Which slots can be used for ECDH (bitmask)
+- - mqtt
+  - o
+  - title: MQTT settings
+- - mqtt.enable
+  - b
+  - false
+  - title: Enable MQTT
+- - mqtt.server
+  - s
+  - iot.eclipse.org:1883
+  - title: MQTT server
+- - mqtt.client_id
+  - s
+  - ""
+  - title: ClientID t send to the broker. Defaults to device.id.
+- - mqtt.user
+  - s
+  - ""
+  - title: User name
+- - mqtt.pass
+  - s
+  - ""
+  - title: Password
+- - mqtt.reconnect_timeout_min
+  - d
+  - 2
+  - title: Starting reconnect timeout
+- - mqtt.reconnect_timeout_max
+  - d
+  - 60
+  - title: Maximum reconnect timeout
+- - mqtt.ssl_cert
+  - s
+  - ""
+  - title: Client certificate to present to the server
+- - mqtt.ssl_key
+  - s
+  - ""
+  - title: Private key corresponding to the certificate
+- - mqtt.ssl_ca_cert
+  - s
+  - ""
+  - title: Verify server certificate using this CA bundle
+- - mqtt.ssl_cipher_suites
+  - s
+  - ""
+  - title: Cipher suites to offer to the server
+- - mqtt.ssl_psk_identity
+  - s
+  - ""
+  - title: PSK identity (must specify PSK cipher suites)
+- - mqtt.ssl_psk_key
+  - s
+  - ""
+  - title: PSK key
+- - mqtt.clean_session
+  - b
+  - true
+  - title: Clean Session
+- - mqtt.keep_alive
+  - i
+  - 60
+  - title: Keep alive interval
+- - mqtt.will_topic
+  - s
+  - ""
+  - title: Will topic
+- - mqtt.will_message
+  - s
+  - ""
+  - title: Will message
+- - mqtt.max_qos
+  - i
+  - 2
+  - title: Limit QoS of outgoing messages to at most this
+- - mqtt.recv_mbuf_limit
+  - i
+  - 3072
+  - title: Limit recv buffer size
+- - mqtt1
+  - o
+  - title: MQTT settings
+- - mqtt1.enable
+  - b
+  - false
+  - title: Enable MQTT
+- - mqtt1.server
+  - s
+  - iot.eclipse.org:1883
+  - title: MQTT server
+- - mqtt1.client_id
+  - s
+  - ""
+  - title: ClientID t send to the broker. Defaults to device.id.
+- - mqtt1.user
+  - s
+  - ""
+  - title: User name
+- - mqtt1.pass
+  - s
+  - ""
+  - title: Password
+- - mqtt1.reconnect_timeout_min
+  - d
+  - 2
+  - title: Starting reconnect timeout
+- - mqtt1.reconnect_timeout_max
+  - d
+  - 60
+  - title: Maximum reconnect timeout
+- - mqtt1.ssl_cert
+  - s
+  - ""
+  - title: Client certificate to present to the server
+- - mqtt1.ssl_key
+  - s
+  - ""
+  - title: Private key corresponding to the certificate
+- - mqtt1.ssl_ca_cert
+  - s
+  - ""
+  - title: Verify server certificate using this CA bundle
+- - mqtt1.ssl_cipher_suites
+  - s
+  - ""
+  - title: Cipher suites to offer to the server
+- - mqtt1.ssl_psk_identity
+  - s
+  - ""
+  - title: PSK identity (must specify PSK cipher suites)
+- - mqtt1.ssl_psk_key
+  - s
+  - ""
+  - title: PSK key
+- - mqtt1.clean_session
+  - b
+  - true
+  - title: Clean Session
+- - mqtt1.keep_alive
+  - i
+  - 60
+  - title: Keep alive interval
+- - mqtt1.will_topic
+  - s
+  - ""
+  - title: Will topic
+- - mqtt1.will_message
+  - s
+  - ""
+  - title: Will message
+- - mqtt1.max_qos
+  - i
+  - 2
+  - title: Limit QoS of outgoing messages to at most this
+- - mqtt1.recv_mbuf_limit
+  - i
+  - 3072
+  - title: Limit recv buffer size
+- - debug.stdout_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDOUT to
+- - debug.stderr_topic
+  - s
+  - ""
+  - title: MQTT topic to publish STDERR to
+- - shadow
+  - o
+  - title: Device shadow settings
+- - shadow.enable
+  - b
+  - true
+  - title: Enable device shadow functionality
+- - shadow.lib
+  - s
+  - ""
+  - title: Preferred shadow lib, e.g. aws, dash, gcp
+- - aws
+  - o
+  - title: AWS settings
+- - aws.thing_name
+  - s
+  - ""
+  - title: Set thing name. If not specified, device.id is used
+- - aws.greengrass
+  - o
+  - title: AWS Greengrass settings
+- - aws.greengrass.enable
+  - b
+  - false
+  - title: Enable AWS Greengrass service
+- - aws.greengrass.reconnect_timeout_min
+  - i
+  - 2
+  - title: Starting reconnect timeout
+- - aws.greengrass.reconnect_timeout_max
+  - i
+  - 60
+  - title: Maximum reconnect timeout
+- - sntp
+  - o
+  - title: SNTP settings
+- - sntp.enable
+  - b
+  - true
+  - title: Enable SNTP
+- - sntp.server
+  - s
+  - time.google.com
+  - title: Server address
+- - sntp.retry_min
+  - i
+  - 1
+  - title: Minimum retry interval
+- - sntp.retry_max
+  - i
+  - 30
+  - title: Maximum retry interval
+- - sntp.update_interval
+  - i
+  - 7200
+  - title: Update interval. If 0, performs a one-off sync
+- - azure
+  - o
+  - title: Azure IoT Hub settings
+- - azure.enable
+  - b
+  - false
+  - title: Enable Azure IoT Hub connection
+- - azure.cs
+  - s
+  - ""
+  - title: Connection string, for SAS auth
+- - azure.token_ttl
+  - i
+  - 3600
+  - title: Life time of the SAS token
+- - azure.host_name
+  - s
+  - ""
+  - title: IoT hub host name
+- - azure.device_id
+  - s
+  - ""
+  - title: Device ID
+- - azure.cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - azure.key
+  - s
+  - ""
+  - title: X.509 private key
+- - azure.enable_cm
+  - b
+  - true
+  - title: Subscribe to the cloud messages topic
+- - azure.enable_dm
+  - b
+  - true
+  - title: Subscribe to the direct method invocation topic
+- - update
+  - o
+  - title: Firmware updater
+- - update.timeout
+  - i
+  - 300
+  - title: Update will be aborted if it does not finish within this time
+- - update.commit_timeout
+  - i
+  - title: After applying update, wait for commit up to this long
+- - update.url
+  - s
+  - title: Fetch updates form here
+- - update.interval
+  - i
+  - title: Check for updates this often
+- - update.ssl_ca_file
+  - s
+  - ca.pem
+  - title: TLS CA file
+- - update.ssl_client_cert_file
+  - s
+  - title: TLS client cert file
+- - update.ssl_server_name
+  - s
+  - title: TLS Server Name
+- - shadow.ota_enable
+  - b
+  - true
+  - title: Enable OTA via shadow
+- - shadow.autocommit
+  - b
+  - false
+  - title: Autocommit OTA if the shadow connection is successful
+- - rpc
+  - o
+  - title: RPC settings
+- - rpc.enable
+  - b
+  - true
+  - title: Enable RPC
+- - rpc.max_frame_size
+  - i
+  - 4096
+  - title: Max Frame Size
+- - rpc.max_queue_length
+  - i
+  - 25
+  - title: Max Queue Length
+- - rpc.default_out_channel_idle_close_timeout
+  - i
+  - 10
+  - title: Default idle close timeout for outbound channels
+- - rpc.acl_file
+  - s
+  - title: File with RPC ACL JSON
+- - rpc.auth_domain
+  - s
+  - title: Realm to use for digest authentication
+- - rpc.auth_file
+  - s
+  - title: File with user credentials in the htdigest format
+- - rpc.ws
+  - o
+  - title: RPC over WebSocket settings
+- - rpc.ws.enable
+  - b
+  - true
+  - title: Enable RPC over WebSocket
+- - rpc.ws.server_address
+  - s
+  - ""
+  - title: Cloud server address
+- - rpc.ws.reconnect_interval_min
+  - i
+  - 1
+  - title: Minimal reconnect interval
+- - rpc.ws.reconnect_interval_max
+  - i
+  - 60
+  - title: Maximal reconnect interval
+- - rpc.ws.ssl_server_name
+  - s
+  - title: TLS Server Name
+- - rpc.ws.ssl_ca_file
+  - s
+  - title: TLS CA file
+- - rpc.ws.ssl_client_cert_file
+  - s
+  - title: TLS client cert file
+- - dash
+  - o
+  - title: Device management dashboard settings
+- - dash.enable
+  - b
+  - false
+  - title: Enable
+- - dash.token
+  - s
+  - ""
+  - title: Access token
+- - dash.server
+  - s
+  - wss://dash.mongoose-os.com/api/v2/rpc
+  - title: Server address
+- - dash.ca_file
+  - s
+  - ca.pem
+  - title: CA file
+- - dash.send_logs
+  - b
+  - true
+  - title: Send logs
+- - dash.stats_interval
+  - i
+  - 10
+  - title: Stats interval in seconds. Set to 0 to disable
+- - dash.ota_chunk_size
+  - i
+  - 1024
+  - title: OTA download chunk size in bytes
+- - http
+  - o
+  - title: HTTP Server
+- - http.enable
+  - b
+  - true
+  - title: Enable HTTP Server
+- - http.listen_addr
+  - s
+  - "80"
+  - title: Listening port / address
+- - http.document_root
+  - s
+  - /
+  - title: Root for serving files. Setting to empty disables file serving.
+- - http.ssl_cert
+  - s
+  - title: Turn on SSL on the listener, use this cert
+- - http.ssl_key
+  - s
+  - title: SSL key to use
+- - http.ssl_ca_cert
+  - s
+  - title: Verify clients this CA bundle
+- - http.upload_acl
+  - s
+  - '*'
+  - title: Upload file ACL
+- - http.hidden_files
+  - s
+  - title: Hidden file pattern
+- - http.auth_domain
+  - s
+  - title: Enable authentication of all HTTP requests
+- - http.auth_file
+  - s
+  - title: Password file to use for auth
+- - dns_sd
+  - o
+  - title: DNS-SD service discovery
+- - dns_sd.enable
+  - b
+  - false
+  - title: Enable service discovery
+- - dns_sd.host_name
+  - s
+  - mOS-??????
+  - title: DNS-SD host name. '?' chars will be expanded with MAC address hex digits
+- - dns_sd.txt
+  - s
+  - ""
+  - title: Extra comma-separated key=value pairs to put into the TXT service record
+- - dns_sd.ttl
+  - i
+  - 120
+  - title: Time-to-live in seconds
+- - dns_sd.host_name
+  - mOS-esp8266-??????
+- - gcp
+  - o
+  - title: GCP IOT settings
+- - gcp.enable
+  - b
+  - false
+  - title: Enable GCP IOT
+- - gcp.project
+  - s
+  - ""
+  - title: Project ID
+- - gcp.region
+  - s
+  - ""
+  - title: Region name
+- - gcp.registry
+  - s
+  - ""
+  - title: Device registry name
+- - gcp.device
+  - s
+  - ""
+  - title: Device name
+- - gcp.key
+  - s
+  - ""
+  - title: Private key to use for token signing
+- - gcp.token_ttl
+  - i
+  - 3600
+  - title: Life time of the token
+- - update.enable_post
+  - b
+  - true
+  - title: Enable POST updates
+- - provision
+  - o
+  - title: Provision library settings
+- - provision.button
+  - o
+  - title: Reset button settings
+- - provision.button.pin
+  - i
+  - -1
+  - title: Reset button GPIO pin
+- - provision.button.pull
+  - i
+  - 1
+  - title: 'Pull mode: 1 - up, 2 - down'
+- - provision.button.hold_ms
+  - i
+  - 0
+  - title: Hold interval in milliseconds. -1 to disable, 0 to reset on reboot, > 0
+      to reset on long press.
+- - rpc.azure
+  - o
+  - title: RPC over Azure settings
+- - rpc.enable_dm
+  - b
+  - true
+  - title: Enable RPC over Azure Direct Method calls
+- - rpc.mqtt
+  - o
+  - title: RPC over MQTT settings
+- - rpc.mqtt.enable
+  - b
+  - true
+  - title: Enable RPC over MQTT
+- - rpc.mqtt.pub_topic
+  - s
+  - '%.*s/rpc'
+  - title: Topic to post outgoing frames to. Argument to the format string is the
+      frame's destination.
+- - rpc.mqtt.sub_topic
+  - s
+  - '%.*s/rpc'
+  - title: Topic to accept incoming frames on. Argument to the format string is device.id
+- - rpc.mqtt.sub_wc
+  - b
+  - true
+  - title: Also subscribe to wildcard topic
+- - rpc.mqtt.qos
+  - i
+  - 1
+  - title: QoS for pub and sub
+- - wifi
+  - o
+  - hide: true
+- - wifi.ap
+  - o
+  - title: WiFi Access Point
+- - wifi.ap.enable
+  - b
+  - true
+  - title: Enable
+- - wifi.ap.ssid
+  - s
+  - Mongoose_??????
+  - title: SSID
+- - wifi.ap.pass
+  - s
+  - Mongoose
+  - title: Password
+    type: password
+- - wifi.ap.hidden
+  - b
+  - false
+  - title: Hide SSID
+- - wifi.ap.channel
+  - i
+  - 6
+  - title: Channel
+- - wifi.ap.max_connections
+  - i
+  - 10
+  - title: Max connections
+- - wifi.ap.ip
+  - s
+  - 192.168.4.1
+  - title: IP address
+- - wifi.ap.netmask
+  - s
+  - 255.255.255.0
+  - title: Network Mask
+- - wifi.ap.gw
+  - s
+  - 192.168.4.1
+  - title: Default Gateway
+- - wifi.ap.dhcp_start
+  - s
+  - 192.168.4.2
+  - title: DHCP Start Address
+- - wifi.ap.dhcp_end
+  - s
+  - 192.168.4.100
+  - title: DHCP End Address
+- - wifi.ap.trigger_on_gpio
+  - i
+  - -1
+  - title: Trigger AP on low GPIO
+- - wifi.ap.disable_after
+  - i
+  - 0
+  - title: If > 0, will disable itself after the specified number of seconds
+- - wifi.ap.hostname
+  - s
+  - ""
+  - title: If not empty, DNS server will resolve given host name to the IP address
+      of AP
+- - wifi.sta
+  - o
+  - title: WiFi Station
+- - wifi.sta.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta.ssid
+  - s
+  - title: SSID
+- - wifi.sta.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta1
+  - o
+  - title: WiFi Station
+- - wifi.sta1.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta1.ssid
+  - s
+  - title: SSID
+- - wifi.sta1.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta1.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta1.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta1.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta1.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta1.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta1.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta1.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta1.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta1.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta1.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta2
+  - o
+  - title: WiFi Station
+- - wifi.sta2.enable
+  - b
+  - title: Connect to existing WiFi
+- - wifi.sta2.ssid
+  - s
+  - title: SSID
+- - wifi.sta2.pass
+  - s
+  - title: Password
+    type: password
+- - wifi.sta2.user
+  - s
+  - title: Username for WPA-PEAP mode
+- - wifi.sta2.anon_identity
+  - s
+  - title: Anonymous identity for WPA mode
+- - wifi.sta2.cert
+  - s
+  - title: Client certificate for WPA-TTLS mode
+- - wifi.sta2.key
+  - s
+  - title: Client key for WPA-TTLS mode
+- - wifi.sta2.ca_cert
+  - s
+  - title: CA certificate for WPA-enterprise mode
+- - wifi.sta2.ip
+  - s
+  - title: Static IP Address
+- - wifi.sta2.netmask
+  - s
+  - title: Static Netmask
+- - wifi.sta2.gw
+  - s
+  - title: Static Default Gateway
+- - wifi.sta2.nameserver
+  - s
+  - title: DNS Server
+- - wifi.sta2.dhcp_hostname
+  - s
+  - title: Host name to include in DHCP requests
+- - wifi.sta_cfg_idx
+  - i
+  - 0
+  - title: WiFi station config index to use, 0, 1 or 2
+- - wifi.sta_connect_timeout
+  - i
+  - 30
+  - title: Timeout for connection, seconds
+- - wifi.ap.keep_enabled
+  - b
+  - true
+  - title: Keep AP enabled when station is on
+- - rpc.uart
+  - o
+  - title: RPC-over-UART settings
+- - rpc.uart.uart_no
+  - i
+  - 0
+  - title: UART number (-1 to disable)
+- - rpc.uart.baud_rate
+  - i
+  - 115200
+  - title: Baud rate
+- - rpc.uart.fc_type
+  - i
+  - 2
+  - title: 'Flow control: 0 - none, 1 - CTS/RTS, 2 - XON/XOFF'
+- - spi
+  - o
+  - title: SPI settings
+- - spi.enable
+  - b
+  - false
+  - title: Enable SPI
+- - spi.debug
+  - b
+  - false
+  - title: Debug SPI bus activity
+- - spi.miso_gpio
+  - i
+  - -1
+  - title: GPIO to use for MISO
+- - spi.mosi_gpio
+  - i
+  - -1
+  - title: GPIO to use for MOSI
+- - spi.sclk_gpio
+  - i
+  - -1
+  - title: GPIO to use for SCLK
+- - spi.cs0_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS0
+- - spi.cs1_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS1
+- - spi.cs2_gpio
+  - i
+  - -1
+  - title: GPIO to use for CS2
+- - spi.miso_gpio
+  - 12
+- - spi.mosi_gpio
+  - 13
+- - spi.sclk_gpio
+  - 14
+- - spi.cs0_gpio
+  - 15
+- - watson
+  - o
+  - title: IBM Watson IoT Platform settings
+- - watson.enable
+  - b
+  - false
+  - title: Enable IBM Watson IoT Platform connection
+- - watson.host_name
+  - s
+  - ""
+  - title: Host name
+- - watson.client_id
+  - s
+  - ""
+  - title: ID string, including device type and org
+- - watson.token
+  - s
+  - ""
+  - title: Auth token
+- - watson.cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - watson.key
+  - s
+  - ""
+  - title: X.509 private key
+- - watson.ca_cert
+  - s
+  - ""
+  - title: X.509 certificate
+- - pins
+  - o
+  - title: Pins layout
+- - pins.led
+  - i
+  - -1
+  - title: LED GPIO pin
+- - pins.button
+  - i
+  - -1
+  - title: Button GPIO pin
+- - pins.button_pull_up
+  - b
+  - true
+  - title: True if button is pulled up when inactive
+- - pins.led
+  - 2
+- - pins.button
+  - 0
+- - mjs
+  - o
+  - title: mJS settings
+- - mjs.generate_jsc
+  - b
+  - true
+  - title: Generate .jsc file when executing any .js file
+- - mqtt.server
+  - 192.168.0.100:1883
+- - mqtt.enable
+  - true
+build_vars:
+  BOARD: ""
+  MGOS_ENABLE_I2C_GPIO: "1"
+  MGOS_ENABLE_SPI_GPIO: "1"
+  MGOS_HAVE_ADC: "1"
+  MGOS_HAVE_ARDUINO_COMPAT: "1"
+  MGOS_HAVE_ARDUINO_ONEWIRE: "1"
+  MGOS_HAVE_ATCA: "1"
+  MGOS_HAVE_AWS: "1"
+  MGOS_HAVE_AZURE: "1"
+  MGOS_HAVE_CA_BUNDLE: "1"
+  MGOS_HAVE_CORE: "1"
+  MGOS_HAVE_DASH: "1"
+  MGOS_HAVE_DEMO_BUNDLE: "1"
+  MGOS_HAVE_DHT: "1"
+  MGOS_HAVE_DNS_SD: "1"
+  MGOS_HAVE_GCP: "1"
+  MGOS_HAVE_HTTP_SERVER: "1"
+  MGOS_HAVE_I2C: "1"
+  MGOS_HAVE_JS_DEMO_BUNDLE: "1"
+  MGOS_HAVE_MJS: "1"
+  MGOS_HAVE_MONGOOSE: "1"
+  MGOS_HAVE_MQTT: "1"
+  MGOS_HAVE_NEOPIXEL: "1"
+  MGOS_HAVE_ONEWIRE: "1"
+  MGOS_HAVE_OTA_COMMON: "1"
+  MGOS_HAVE_OTA_HTTP_CLIENT: "1"
+  MGOS_HAVE_OTA_HTTP_SERVER: "1"
+  MGOS_HAVE_OTA_SHADOW: "1"
+  MGOS_HAVE_PROVISION: "1"
+  MGOS_HAVE_PWM: "1"
+  MGOS_HAVE_RPC_AZURE: "1"
+  MGOS_HAVE_RPC_COMMON: "1"
+  MGOS_HAVE_RPC_LOOPBACK: "1"
+  MGOS_HAVE_RPC_MQTT: "1"
+  MGOS_HAVE_RPC_SERVICE_ATCA: "1"
+  MGOS_HAVE_RPC_SERVICE_CONFIG: "1"
+  MGOS_HAVE_RPC_SERVICE_FS: "1"
+  MGOS_HAVE_RPC_SERVICE_GPIO: "1"
+  MGOS_HAVE_RPC_SERVICE_I2C: "1"
+  MGOS_HAVE_RPC_SERVICE_OTA: "1"
+  MGOS_HAVE_RPC_SERVICE_WIFI: "1"
+  MGOS_HAVE_RPC_UART: "1"
+  MGOS_HAVE_SHADOW: "1"
+  MGOS_HAVE_SNTP: "1"
+  MGOS_HAVE_SPI: "1"
+  MGOS_HAVE_VFS_COMMON: "1"
+  MGOS_HAVE_VFS_DEV_PART: "1"
+  MGOS_HAVE_VFS_DEV_SPI_FLASH: "1"
+  MGOS_HAVE_VFS_FS_SPIFFS: "1"
+  MGOS_HAVE_WATSON: "1"
+  MGOS_HAVE_WIFI: "1"
+  MGOS_WIFI_ENABLE_AP_STA: "1"
+cdefs:
+  ARDUINO: "150"
+  ESP8266: "1"
+  F_CPU: "160000000"
+  MG_ENABLE_DNS: "1"
+  MG_ENABLE_DNS_SERVER: "1"
+  MG_ENABLE_MQTT: "1"
+  MG_ENABLE_SNTP: "1"
+  MGOS_DNS_SD_HIDE_ADDITIONAL_INFO: "0"
+  MGOS_ENABLE_FILE_UPLOAD: "1"
+  MGOS_ENABLE_RPC_CHANNEL_HTTP: "1"
+  MGOS_ENABLE_RPC_CHANNEL_WS: "1"
+  MGOS_ENABLE_SYS_SERVICE: "1"
+  MGOS_ENABLE_TUNNEL: "0"
+  MGOS_ENABLE_WEB_CONFIG: "0"
+  MGOS_HAVE_ADC: "1"
+  MGOS_HAVE_ARDUINO_COMPAT: "1"
+  MGOS_HAVE_ARDUINO_ONEWIRE: "1"
+  MGOS_HAVE_ATCA: "1"
+  MGOS_HAVE_AWS: "1"
+  MGOS_HAVE_AZURE: "1"
+  MGOS_HAVE_CA_BUNDLE: "1"
+  MGOS_HAVE_CORE: "1"
+  MGOS_HAVE_DASH: "1"
+  MGOS_HAVE_DEMO_BUNDLE: "1"
+  MGOS_HAVE_DHT: "1"
+  MGOS_HAVE_DNS_SD: "1"
+  MGOS_HAVE_GCP: "1"
+  MGOS_HAVE_HTTP_SERVER: "1"
+  MGOS_HAVE_I2C: "1"
+  MGOS_HAVE_JS_DEMO_BUNDLE: "1"
+  MGOS_HAVE_MJS: "1"
+  MGOS_HAVE_MONGOOSE: "1"
+  MGOS_HAVE_MQTT: "1"
+  MGOS_HAVE_NEOPIXEL: "1"
+  MGOS_HAVE_ONEWIRE: "1"
+  MGOS_HAVE_OTA_COMMON: "1"
+  MGOS_HAVE_OTA_HTTP_CLIENT: "1"
+  MGOS_HAVE_OTA_HTTP_SERVER: "1"
+  MGOS_HAVE_OTA_SHADOW: "1"
+  MGOS_HAVE_PROVISION: "1"
+  MGOS_HAVE_PWM: "1"
+  MGOS_HAVE_RPC_AZURE: "1"
+  MGOS_HAVE_RPC_COMMON: "1"
+  MGOS_HAVE_RPC_LOOPBACK: "1"
+  MGOS_HAVE_RPC_MQTT: "1"
+  MGOS_HAVE_RPC_SERVICE_ATCA: "1"
+  MGOS_HAVE_RPC_SERVICE_CONFIG: "1"
+  MGOS_HAVE_RPC_SERVICE_FS: "1"
+  MGOS_HAVE_RPC_SERVICE_GPIO: "1"
+  MGOS_HAVE_RPC_SERVICE_I2C: "1"
+  MGOS_HAVE_RPC_SERVICE_OTA: "1"
+  MGOS_HAVE_RPC_SERVICE_WIFI: "1"
+  MGOS_HAVE_RPC_UART: "1"
+  MGOS_HAVE_SHADOW: "1"
+  MGOS_HAVE_SNTP: "1"
+  MGOS_HAVE_SPI: "1"
+  MGOS_HAVE_VFS_COMMON: "1"
+  MGOS_HAVE_VFS_DEV_PART: "1"
+  MGOS_HAVE_VFS_DEV_SPI_FLASH: "1"
+  MGOS_HAVE_VFS_FS_SPIFFS: "1"
+  MGOS_HAVE_WATSON: "1"
+  MGOS_HAVE_WIFI: "1"
+  MGOS_WIFI_ENABLE_AP_STA: "1"
+tags:
+- js
+- arduino-core
+- DS18B20
+- MQTT
+libs_version: latest
+modules_version: latest
+mongoose_os_version: latest
+manifest_version: 2018-08-29
+libs_handled:
+- lib:
+    origin: https://github.com/mongoose-os-libs/adc
+    location: https://github.com/mongoose-os-libs/adc
+    name: adc
+  path: C:\Users\atana\Desktop\src-mcu\deps\adc
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\adc\esp8266\src\esp_adc.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/vfs-common
+    location: https://github.com/mongoose-os-libs/vfs-common
+    name: vfs-common
+  path: C:\Users\atana\Desktop\src-mcu\deps\vfs-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\mgos_vfs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\mgos_vfs_dev.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_flash_writer.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_fs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-common\src\esp8266\esp_vfs_dev_sysflash.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/mongoose
+    location: https://github.com/mongoose-os-libs/mongoose
+    name: mongoose
+  path: C:\Users\atana\Desktop\src-mcu\deps\mongoose
+  deps:
+  - vfs-common
+- lib:
+    origin: https://github.com/mongoose-os-libs/vfs-dev-part
+    location: https://github.com/mongoose-os-libs/vfs-dev-part
+    name: vfs-dev-part
+  path: C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-part
+  deps:
+  - vfs-common
+  init_deps:
+  - vfs-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-part\src\mgos_vfs_dev_part.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+    location: https://github.com/mongoose-os-libs/vfs-fs-spiffs
+    name: vfs-fs-spiffs
+  path: C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs
+  deps:
+  - vfs-common
+  init_deps:
+  - vfs-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\mgos_vfs_fs_spiffs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_cache.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_check.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_gc.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_hydrogen.c
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-fs-spiffs\src\spiffs\spiffs_nucleus.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/core
+    location: https://github.com/mongoose-os-libs/core
+    name: core
+  path: C:\Users\atana\Desktop\src-mcu\deps\core
+  deps:
+  - mongoose
+  - vfs-dev-part
+  - vfs-fs-spiffs
+  init_deps:
+  - mongoose
+  - ota-common
+  - vfs-common
+  - vfs-dev-part
+  - vfs-dev-spi-flash
+  - vfs-fs-spiffs
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\core\src\mgos_core.c
+  - C:\Users\atana\Desktop\src-mcu\deps\core\src\esp8266\esp_rboot.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/arduino-compat
+    location: https://github.com/mongoose-os-libs/arduino-compat
+    name: arduino-compat
+  path: C:\Users\atana\Desktop\src-mcu\deps\arduino-compat
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\Print.cpp
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\WString.cpp
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-compat\src\mgos_arduino.cpp
+- lib:
+    origin: https://github.com/mongoose-os-libs/onewire
+    location: https://github.com/mongoose-os-libs/onewire
+    name: onewire
+  path: C:\Users\atana\Desktop\src-mcu\deps\onewire
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\onewire\src\mgos_onewire.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/arduino-onewire
+    location: https://github.com/mongoose-os-libs/arduino-onewire
+    name: arduino-onewire
+  path: C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire
+  deps:
+  - arduino-compat
+  - onewire
+  init_deps:
+  - arduino-compat
+  - core
+  - onewire
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\mgos_arduino_onewire_c.c
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\OneWire.cpp
+  - C:\Users\atana\Desktop\src-mcu\deps\arduino-onewire\src\mgos_arduino_onewire.cpp
+- lib:
+    origin: https://github.com/mongoose-os-libs/i2c
+    location: https://github.com/mongoose-os-libs/i2c
+    name: i2c
+  path: C:\Users\atana\Desktop\src-mcu\deps\i2c
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\i2c\src\mgos_i2c.c
+  - C:\Users\atana\Desktop\src-mcu\deps\i2c\src\common_gpio\mgos_i2c_gpio.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/atca
+    location: https://github.com/mongoose-os-libs/atca
+    name: atca
+  path: C:\Users\atana\Desktop\src-mcu\deps\atca
+  deps:
+  - i2c
+  init_deps:
+  - core
+  - i2c
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\atca\src\mgos_atca.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/ca-bundle
+    location: https://github.com/mongoose-os-libs/ca-bundle
+    name: ca-bundle
+  path: C:\Users\atana\Desktop\src-mcu\deps\ca-bundle
+  deps:
+  - core
+  init_deps:
+  - core
+- lib:
+    origin: https://github.com/mongoose-os-libs/mqtt
+    location: https://github.com/mongoose-os-libs/mqtt
+    name: mqtt
+  path: C:\Users\atana\Desktop\src-mcu\deps\mqtt
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\mqtt\src\mgos_mqtt.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/shadow
+    location: https://github.com/mongoose-os-libs/shadow
+    name: shadow
+  path: C:\Users\atana\Desktop\src-mcu\deps\shadow
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\shadow\src\mgos_shadow.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/aws
+    location: https://github.com/mongoose-os-libs/aws
+    name: aws
+  path: C:\Users\atana\Desktop\src-mcu\deps\aws
+  deps:
+  - ca-bundle
+  - mqtt
+  - shadow
+  init_deps:
+  - ca-bundle
+  - core
+  - mqtt
+  - shadow
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws.c
+  - C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws_greengrass.c
+  - C:\Users\atana\Desktop\src-mcu\deps\aws\src\mgos_aws_shadow.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/sntp
+    location: https://github.com/mongoose-os-libs/sntp
+    name: sntp
+  path: C:\Users\atana\Desktop\src-mcu\deps\sntp
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\sntp\src\mgos_sntp.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/azure
+    location: https://github.com/mongoose-os-libs/azure
+    name: azure
+  path: C:\Users\atana\Desktop\src-mcu\deps\azure
+  deps:
+  - ca-bundle
+  - mqtt
+  - shadow
+  - sntp
+  init_deps:
+  - ca-bundle
+  - core
+  - mqtt
+  - shadow
+  - sntp
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure.c
+  - C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_cm.c
+  - C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_dm.c
+  - C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_sas.c
+  - C:\Users\atana\Desktop\src-mcu\deps\azure\src\mgos_azure_shadow.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/ota-common
+    location: https://github.com/mongoose-os-libs/ota-common
+    name: ota-common
+  path: C:\Users\atana\Desktop\src-mcu\deps\ota-common
+  deps:
+  - mongoose
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\ota-common\src\mgos_updater_common.c
+  - C:\Users\atana\Desktop\src-mcu\deps\ota-common\src\esp8266\esp_updater.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/ota-http-client
+    location: https://github.com/mongoose-os-libs/ota-http-client
+    name: ota-http-client
+  path: C:\Users\atana\Desktop\src-mcu\deps\ota-http-client
+  deps:
+  - ota-common
+  init_deps:
+  - core
+  - ota-common
+- lib:
+    origin: https://github.com/mongoose-os-libs/ota-shadow
+    location: https://github.com/mongoose-os-libs/ota-shadow
+    name: ota-shadow
+  path: C:\Users\atana\Desktop\src-mcu\deps\ota-shadow
+  deps:
+  - ota-common
+  - ota-http-client
+  - shadow
+  init_deps:
+  - core
+  - ota-common
+  - ota-http-client
+  - shadow
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-common
+    location: https://github.com/mongoose-os-libs/rpc-common
+    name: rpc-common
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-common
+  init_deps:
+  - core
+  - http-server
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc.c
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel.c
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel_http.c
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mg_rpc\mg_rpc_channel_ws.c
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-common\src\mgos_rpc.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/dash
+    location: https://github.com/mongoose-os-libs/dash
+    name: dash
+  path: C:\Users\atana\Desktop\src-mcu\deps\dash
+  deps:
+  - core
+  - ota-shadow
+  - rpc-common
+  - shadow
+  init_deps:
+  - core
+  - ota-shadow
+  - rpc-common
+  - shadow
+- lib:
+    origin: https://github.com/mongoose-os-libs/dht
+    location: https://github.com/mongoose-os-libs/dht
+    name: dht
+  path: C:\Users\atana\Desktop\src-mcu\deps\dht
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\dht\src\mgos_dht.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/http-server
+    location: https://github.com/mongoose-os-libs/http-server
+    name: http-server
+  path: C:\Users\atana\Desktop\src-mcu\deps\http-server
+  deps:
+  - core
+  init_deps:
+  - atca
+  - core
+  - wifi
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\http-server\src\mgos_http_server.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/dns-sd
+    location: https://github.com/mongoose-os-libs/dns-sd
+    name: dns-sd
+  path: C:\Users\atana\Desktop\src-mcu\deps\dns-sd
+  deps:
+  - http-server
+  init_deps:
+  - core
+  - http-server
+  - wifi
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\mgos_dns_sd.c
+  - C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\mgos_mdns.c
+  - C:\Users\atana\Desktop\src-mcu\deps\dns-sd\src\lwip\lwip_mdns.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/gcp
+    location: https://github.com/mongoose-os-libs/gcp
+    name: gcp
+  path: C:\Users\atana\Desktop\src-mcu\deps\gcp
+  deps:
+  - ca-bundle
+  - mqtt
+  - sntp
+  init_deps:
+  - ca-bundle
+  - core
+  - mqtt
+  - sntp
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\gcp\src\mgos_gcp.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/neopixel
+    location: https://github.com/mongoose-os-libs/neopixel
+    name: neopixel
+  path: C:\Users\atana\Desktop\src-mcu\deps\neopixel
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\neopixel\src\mgos_neopixel.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/ota-http-server
+    location: https://github.com/mongoose-os-libs/ota-http-server
+    name: ota-http-server
+  path: C:\Users\atana\Desktop\src-mcu\deps\ota-http-server
+  deps:
+  - http-server
+  - ota-common
+  - ota-http-client
+  init_deps:
+  - core
+  - http-server
+  - ota-common
+  - ota-http-client
+- lib:
+    origin: https://github.com/mongoose-os-libs/provision
+    location: https://github.com/mongoose-os-libs/provision
+    name: provision
+  path: C:\Users\atana\Desktop\src-mcu\deps\provision
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\provision\src\mgos_provision.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/pwm
+    location: https://github.com/mongoose-os-libs/pwm
+    name: pwm
+  path: C:\Users\atana\Desktop\src-mcu\deps\pwm
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\pwm\src\mgos_pwm.c
+  - C:\Users\atana\Desktop\src-mcu\deps\pwm\src\mgos_pwm_rgb_led.c
+  - C:\Users\atana\Desktop\src-mcu\deps\pwm\src\esp8266\esp_pwm.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-azure
+    location: https://github.com/mongoose-os-libs/rpc-azure
+    name: rpc-azure
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-azure
+  deps:
+  - azure
+  - rpc-common
+  init_deps:
+  - azure
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-azure\src\mgos_rpc_channel_azure_dm.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-loopback
+    location: https://github.com/mongoose-os-libs/rpc-loopback
+    name: rpc-loopback
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-loopback
+  deps:
+  - rpc-common
+  init_deps:
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-loopback\src\mg_rpc_channel_loopback.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-mqtt
+    location: https://github.com/mongoose-os-libs/rpc-mqtt
+    name: rpc-mqtt
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-mqtt
+  deps:
+  - mqtt
+  - rpc-common
+  init_deps:
+  - aws
+  - azure
+  - core
+  - gcp
+  - mqtt
+  - rpc-common
+  - watson
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-mqtt\src\mgos_rpc_channel_mqtt.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-atca
+    location: https://github.com/mongoose-os-libs/rpc-service-atca
+    name: rpc-service-atca
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-atca
+  deps:
+  - atca
+  - rpc-common
+  init_deps:
+  - atca
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-atca\src\mgos_atca_service.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-config
+    location: https://github.com/mongoose-os-libs/rpc-service-config
+    name: rpc-service-config
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-config
+  deps:
+  - rpc-common
+  init_deps:
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-config\src\mgos_service_config.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-fs
+    location: https://github.com/mongoose-os-libs/rpc-service-fs
+    name: rpc-service-fs
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-fs
+  deps:
+  - rpc-common
+  init_deps:
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-fs\src\mgos_service_filesystem.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-gpio
+    location: https://github.com/mongoose-os-libs/rpc-service-gpio
+    name: rpc-service-gpio
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-gpio
+  deps:
+  - rpc-common
+  init_deps:
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-gpio\src\mgos_gpio_service.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-i2c
+    location: https://github.com/mongoose-os-libs/rpc-service-i2c
+    name: rpc-service-i2c
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-i2c
+  deps:
+  - i2c
+  - rpc-common
+  init_deps:
+  - core
+  - i2c
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-i2c\src\mgos_i2c_service.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-ota
+    location: https://github.com/mongoose-os-libs/rpc-service-ota
+    name: rpc-service-ota
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-ota
+  deps:
+  - ota-http-client
+  - rpc-common
+  init_deps:
+  - core
+  - ota-http-client
+  - rpc-common
+- lib:
+    origin: https://github.com/mongoose-os-libs/wifi
+    location: https://github.com/mongoose-os-libs/wifi
+    name: wifi
+  path: C:\Users\atana\Desktop\src-mcu\deps\wifi
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\wifi\src\mgos_wifi.c
+  - C:\Users\atana\Desktop\src-mcu\deps\wifi\src\mjs_wifi.c
+  - C:\Users\atana\Desktop\src-mcu\deps\wifi\esp8266\src\esp_wifi.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-service-wifi
+    location: https://github.com/mongoose-os-libs/rpc-service-wifi
+    name: rpc-service-wifi
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-service-wifi
+  deps:
+  - rpc-common
+  - wifi
+  init_deps:
+  - core
+  - rpc-common
+  - wifi
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-service-wifi\src\mgos_rpc_service_wifi.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/rpc-uart
+    location: https://github.com/mongoose-os-libs/rpc-uart
+    name: rpc-uart
+  path: C:\Users\atana\Desktop\src-mcu\deps\rpc-uart
+  deps:
+  - rpc-common
+  init_deps:
+  - core
+  - rpc-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\rpc-uart\src\mgos_rpc_channel_uart.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/spi
+    location: https://github.com/mongoose-os-libs/spi
+    name: spi
+  path: C:\Users\atana\Desktop\src-mcu\deps\spi
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\spi\src\mgos_spi.c
+  - C:\Users\atana\Desktop\src-mcu\deps\spi\src\mgos_spi_mjs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\spi\src\common_gpio\mgos_spi_gpio.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/vfs-dev-spi-flash
+    location: https://github.com/mongoose-os-libs/vfs-dev-spi-flash
+    name: vfs-dev-spi-flash
+  path: C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-spi-flash
+  deps:
+  - spi
+  - vfs-common
+  init_deps:
+  - vfs-common
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\vfs-dev-spi-flash\src\mgos_vfs_dev_spi_flash.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/watson
+    location: https://github.com/mongoose-os-libs/watson
+    name: watson
+  path: C:\Users\atana\Desktop\src-mcu\deps\watson
+  deps:
+  - ca-bundle
+  - mqtt
+  init_deps:
+  - ca-bundle
+  - core
+  - mqtt
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\watson\src\mgos_watson.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/demo-bundle
+    location: https://github.com/mongoose-os-libs/demo-bundle
+    name: demo-bundle
+  path: C:\Users\atana\Desktop\src-mcu\deps\demo-bundle
+  deps:
+  - adc
+  - atca
+  - aws
+  - azure
+  - ca-bundle
+  - core
+  - dash
+  - dht
+  - dns-sd
+  - gcp
+  - http-server
+  - i2c
+  - neopixel
+  - ota-http-client
+  - ota-http-server
+  - ota-shadow
+  - provision
+  - pwm
+  - rpc-azure
+  - rpc-loopback
+  - rpc-mqtt
+  - rpc-service-atca
+  - rpc-service-config
+  - rpc-service-fs
+  - rpc-service-gpio
+  - rpc-service-gpio
+  - rpc-service-i2c
+  - rpc-service-ota
+  - rpc-service-wifi
+  - rpc-uart
+  - shadow
+  - sntp
+  - spi
+  - vfs-dev-spi-flash
+  - watson
+  - wifi
+  init_deps:
+  - adc
+  - atca
+  - aws
+  - azure
+  - ca-bundle
+  - core
+  - dash
+  - dht
+  - dns-sd
+  - gcp
+  - http-server
+  - i2c
+  - neopixel
+  - ota-http-client
+  - ota-http-server
+  - ota-shadow
+  - provision
+  - pwm
+  - rpc-azure
+  - rpc-loopback
+  - rpc-mqtt
+  - rpc-service-atca
+  - rpc-service-config
+  - rpc-service-fs
+  - rpc-service-gpio
+  - rpc-service-i2c
+  - rpc-service-ota
+  - rpc-service-wifi
+  - rpc-uart
+  - shadow
+  - sntp
+  - spi
+  - vfs-dev-spi-flash
+  - watson
+  - wifi
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\demo-bundle\src\mgos_demo_bundle.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/mjs
+    location: https://github.com/mongoose-os-libs/mjs
+    name: mjs
+  path: C:\Users\atana\Desktop\src-mcu\deps\mjs
+  deps:
+  - core
+  init_deps:
+  - core
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\mjs\src\mos_mjs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\modules\mjs\mjs.c
+  - C:\Users\atana\Desktop\src-mcu\deps\mjs\esp8266\src\esp8266_mjs.c
+- lib:
+    origin: https://github.com/mongoose-os-libs/js-demo-bundle
+    location: https://github.com/mongoose-os-libs/js-demo-bundle
+    name: js-demo-bundle
+  path: C:\Users\atana\Desktop\src-mcu\deps\js-demo-bundle
+  deps:
+  - demo-bundle
+  - mjs
+  init_deps:
+  - core
+  - demo-bundle
+  - mjs
+  sources:
+  - C:\Users\atana\Desktop\src-mcu\deps\js-demo-bundle\src\mgos_js_demo_bundle.c
+init_deps:
+- mongoose
+- ota-common
+- vfs-common
+- vfs-dev-part
+- vfs-dev-spi-flash
+- vfs-fs-spiffs
+- core
+- adc
+- arduino-compat
+- onewire
+- arduino-onewire
+- i2c
+- atca
+- ca-bundle
+- mqtt
+- shadow
+- aws
+- sntp
+- azure
+- ota-http-client
+- ota-shadow
+- wifi
+- http-server
+- rpc-common
+- dash
+- dht
+- dns-sd
+- gcp
+- neopixel
+- ota-http-server
+- provision
+- pwm
+- rpc-azure
+- rpc-loopback
+- watson
+- rpc-mqtt
+- rpc-service-atca
+- rpc-service-config
+- rpc-service-fs
+- rpc-service-gpio
+- rpc-service-i2c
+- rpc-service-ota
+- rpc-service-wifi
+- rpc-uart
+- spi
+- demo-bundle
+- mjs
+- js-demo-bundle

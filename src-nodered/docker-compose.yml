@@ -1,0 +1,18 @@
+version: "3"
+services:
+    node-red-aqua:
+        container_name: node-red-aqua
+        image: nodered/node-red-docker:rpi
+        ports: 
+            - "1880:1880"
+            - "1883:1883"
+            - "1884:1884"
+        # environment:
+        #     - FLOWS=flows.json
+            # - NODE_OPTIONS="--max_old_space_size=256"
+        volumes:
+            - ./data:/data
+        networks:
+            - default
+volumes:
+  aqua-node-red-data:
