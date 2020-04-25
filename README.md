@@ -41,7 +41,7 @@ Note that this is approximate price for an item
 
 #### ESP8266 NodeMCU
 
-| ![ESP8266 NodeMCU](/docs/ESP8266-NodeMCU-board.jpg "ESP8266 NodeMCU") |
+| ![ESP8266 NodeMCU](/docs/hdw/ESP8266-NodeMCU-board.jpg "ESP8266 NodeMCU") |
 |:---------------------------------------------------------------------:|
 
 The ESP8266 NodeMCU is **Single-board microcontroller**, an open source IoT platform. It includes firmware which runs on the ESP8266 Wi-Fi SoC from Espressif Systems, and hardware which is based on the ESP-12 module. The term "NodeMCU" by default refers to the firmware rather than the development kits.
@@ -77,7 +77,7 @@ Technical specifications
 The Four Channel relay module is used to isolate the control circuit from operation circuit (220Vac)
 This is a 5V 4-channel relay interface board, and each channel needs a 15-20mA driver current. It can be used to control various appliances and equipment with large current. It is equiped with high-current relays that work under AC250V 10A or DC30V 10A. It has a standard interface that can be controlled directly by microcontroller.
 
-| ![4 Channel 5V Relay Module](/docs/relay-module-4channel-4vdc.jpg "4 Channel 5V Relay Module") |
+| ![4 Channel 5V Relay Module](/docs/hdw/relay-module-4channel-4vdc.jpg "4 Channel 5V Relay Module") |
 |:---------------------------------------------------------------------:|
 
 Features
