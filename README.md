@@ -6,8 +6,9 @@ Fish tank controller using esp8266 board, [Mongoose OS](https://mongoose-os.com/
 
 The whole project allows me to take control and monitoring remotely the entire aquarium.
 
-| ![desktop-02.png](docs/ui/desktop-02.png) |
-|:-----------------------------------------:|
+|                                               |
+|:----------------------------------------------|
+| ![desktop-02.png](docs/assets/desktop-02.png) |
 
 - [Aquarium app](#aquarium-app)
   - [Description](#description)
@@ -41,8 +42,9 @@ Note that this is approximate price for an item
 
 #### ESP8266 NodeMCU
 
-| ![ESP8266 NodeMCU](/docs/hdw/ESP8266-NodeMCU-board.jpg "ESP8266 NodeMCU") |
-|:---------------------------------------------------------------------:|
+|                                                                             |
+|:---------------------------------------------------------------------------:|
+| ![ESP8266 NodeMCU](docs/assets/ESP8266-NodeMCU-board.jpg "ESP8266 NodeMCU") |
 
 The ESP8266 NodeMCU is **Single-board microcontroller**, an open source IoT platform. It includes firmware which runs on the ESP8266 Wi-Fi SoC from Espressif Systems, and hardware which is based on the ESP-12 module. The term "NodeMCU" by default refers to the firmware rather than the development kits.
 
@@ -77,8 +79,9 @@ Technical specifications
 The Four Channel relay module is used to isolate the control circuit from operation circuit (220Vac)
 This is a 5V 4-channel relay interface board, and each channel needs a 15-20mA driver current. It can be used to control various appliances and equipment with large current. It is equiped with high-current relays that work under AC250V 10A or DC30V 10A. It has a standard interface that can be controlled directly by microcontroller.
 
-| ![4 Channel 5V Relay Module](/docs/hdw/relay-module-4channel-4vdc.jpg "4 Channel 5V Relay Module") |
-|:---------------------------------------------------------------------:|
+|                                                                                                      |
+|:----------------------------------------------------------------------------------------------------:|
+| ![4 Channel 5V Relay Module](docs/assets/relay-module-4channel-4vdc.jpg "4 Channel 5V Relay Module") |
 
 Features
 
@@ -118,7 +121,7 @@ Technical specifications
 
 #### Waterproof DS18B20 temperature sensor
 
-The DS18B20 temperature sensor is used for monitoring the tempreture. Provides 9-bit to 12-bit Celsius temperature measurements
+The DS18B20 temperature sensor is used for monitoring the temperature. Provides 9-bit to 12-bit Celsius temperature measurements
 
 Features
 
@@ -147,8 +150,8 @@ graph TB
 ```
 -->
 
-| ![wiring-block-diagram](/docs/hdw/wiring-block-diagram.PNG "block-diagram") | ![wiring-circuit](/docs/hdw/wiring-circuit-v2.PNG "wiring circuit") |
-|:---------------------------------------------------------------------:|:---------------------------------------------------------------------:|
+| ![wiring-block-diagram](docs/assets/wiring-block-diagram.PNG "block-diagram") | ![wiring-circuit](docs/assets/wiring-circuit-v2.PNG "wiring circuit") |
+|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------:|
 
 ## Software
 
@@ -158,6 +161,6 @@ Mongoose OS is an Internet of Things (IoT) Firmware Development Framework availa
 
 For the frontend part or the user interface style is based on Google's [Material Design](https://material.io/). The user interface is also responsive witch make it looks nice for the variety of devices e.g. laptop, phone or tablet.
 
-| ![desktop-01.png](docs/ui/desktop-01.png) | ![desktop-02.png](docs/ui/desktop-02.png) | ![tablet-01.png](docs/ui/tablet-01.png) | ![tablet-02.png](docs/ui/tablet-02.png) |
-|:---:|:---:|:---:|:---:|
-| ![mobile-01.jpg](docs/ui/mobile-01.jpg) | ![mobile-02.jpg](docs/ui/mobile-02.jpg) | ![mobile-03.jpg](docs/ui/mobile-03.jpg) | ![mobile-04.png](docs/ui/mobile-04.png) |
+| ![desktop-01.png](docs/assets/desktop-01.png) | ![desktop-02.png](docs/assets/desktop-02.png) | ![tablet-01.png](docs/assets/tablet-01.png) | ![tablet-02.png](docs/assets/tablet-02.png) |
+|:---------------------------------------------:|:---------------------------------------------:|:-------------------------------------------:|:-------------------------------------------:|
+| ![mobile-01.jpg](docs/assets/mobile-01.jpg)   | ![mobile-02.jpg](docs/assets/mobile-02.jpg)   | ![mobile-03.jpg](docs/assets/mobile-03.jpg) | ![mobile-04.png](docs/assets/mobile-04.png) |
