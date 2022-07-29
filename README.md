@@ -150,8 +150,9 @@ graph TB
 ```
 -->
 
-| ![wiring-block-diagram](docs/assets/wiring-block-diagram.PNG "block-diagram") | ![wiring-circuit](docs/assets/wiring-circuit-v2.PNG "wiring circuit") |
+|                                                                               |                                                                       |
 |:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------:|
+| ![wiring-block-diagram](docs/assets/wiring-block-diagram.PNG "block-diagram") | ![wiring-circuit](docs/assets/wiring-circuit-v2.PNG "wiring circuit") |
 
 ## Software
 
@@ -161,6 +162,7 @@ Mongoose OS is an Internet of Things (IoT) Firmware Development Framework availa
 
 For the frontend part or the user interface style is based on Google's [Material Design](https://material.io/). The user interface is also responsive witch make it looks nice for the variety of devices e.g. laptop, phone or tablet.
 
-| ![desktop-01.png](docs/assets/desktop-01.png) | ![desktop-02.png](docs/assets/desktop-02.png) | ![tablet-01.png](docs/assets/tablet-01.png) | ![tablet-02.png](docs/assets/tablet-02.png) |
+|                                               |                                               |                                             |                                             |
 |:---------------------------------------------:|:---------------------------------------------:|:-------------------------------------------:|:-------------------------------------------:|
+| ![desktop-01.png](docs/assets/desktop-01.png) | ![desktop-02.png](docs/assets/desktop-02.png) | ![tablet-01.png](docs/assets/tablet-01.png) | ![tablet-02.png](docs/assets/tablet-02.png) |
 | ![mobile-01.jpg](docs/assets/mobile-01.jpg)   | ![mobile-02.jpg](docs/assets/mobile-02.jpg)   | ![mobile-03.jpg](docs/assets/mobile-03.jpg) | ![mobile-04.png](docs/assets/mobile-04.png) |
