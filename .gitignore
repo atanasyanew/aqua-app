@@ -6,15 +6,27 @@ yarn-debug.log*
 yarn-error.log*
 
 # Mongoose OS build and deps
-src-mcu/build/
-src-mcu/deps/
-src-mcu/mos.exe
+src/mcu/build/
+src/mcu/deps/
+src/mcu/mos.exe
 # Ignroe the last build
 !src-mcu/fw.zip
 !src-mcu/build.log
 
-# Nod-RED
-src-nodered/data/node_modules/
+# NodeRed
+src/ui-nodered/nodered/data/node_modules/
+src/ui-nodered/nodered/data/.npm
+src/ui-nodered/nodered/data/.sessions.json
+src/ui-nodered/nodered/data/.config.nodes.json
+src/ui-nodered/nodered/data/.config.runtime.json
+src/ui-nodered/nodered/data/.config.users.json
+src/ui-nodered/nodered/data/.config.users.json.backup
+src/ui-nodered/nodered/data/.flows.json.backup
+src/ui-nodered/nodered/data/flows_cred.json
+src/ui-nodered/nodered/data/package.json
+src/ui-nodered/nodered/data/settings.js
+
+
 
 
 # Runtime data

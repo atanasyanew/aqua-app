@@ -1,5 +1,19 @@
 # Aqua-app, Node-RED server
 
+You may use provided docker compose
+
+```bash
+docker-compose up -d
+```
+
+or the following image - [hub.docker.com/r/ayanew/aqualinks](https://hub.docker.com/r/ayanew/aqualinks)
+
+```bash
+docker run -p 1880:1880 -e MQTT_URL="yourIp" ayanew/aqualinks
+```
+
+**OBSOLETE!**
+
 Node-RED app to interacts with the MCU and provides user interface
 The folder ```data``` folder is shared between the host machine and the container.
 

@@ -1,18 +1,27 @@
-version: "3"
+version: "3.6"
+
 services:
-    node-red-aqua:
-        container_name: node-red-aqua
-        image: nodered/node-red
-        ports: 
-            - "1880:1880"
-            - "1883:1883"
-            - "1884:1884"
-        # environment:
-        #     - FLOWS=flows.json
-        #     - NODE_OPTIONS="--max_old_space_size=256"
-        volumes:
-            - ./data:/data
-        networks:
-            - default
-volumes:
-  aqua-node-red-data:
+
+  nodered:
+    container_name: nodered
+    build: .build/
+    restart: unless-stopped
+    user: "0" # This needs to be set so that node-red can match filesystem UIDs, root (id = 0) is the default user within a container
+    # privileged: true
+    env_file:
+      - nodered.env
+    ports:
+      - 1880:1880
+    # volumes:
+    #   - ./nodered/data:/data
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    # env_file:
+    #   - mosquitto.env
+    ports:
+      - 1883:1883
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
