@@ -14,6 +14,61 @@
         "info": ""
     },
     {
+        "id": "84ead1b4aafb92cf",
+        "type": "subflow",
+        "name": "audio out",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 440,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "1fa96b758f664dc6"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "32932201d882ccd9",
+        "type": "subflow",
+        "name": "guard against scheduler",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "609e9819ae9fd155"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 680,
+                "y": 320,
+                "wires": [
+                    {
+                        "id": "47823feef24f1614",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
         "id": "bfd52a2f.140298",
         "type": "ui_base",
         "theme": {
@@ -32,7 +87,7 @@
                 "edited": false
             },
             "customTheme": {
-                "name": "home-theme",
+                "name": "aqualinks-theme",
                 "default": "#4B7930",
                 "baseColor": "#273e55",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
@@ -124,12 +179,13 @@
         "id": "15c95d11.880f13",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "$(MQTT_URL)",
-        "port": "$(MQTT_PORT)",
+        "broker": "192.168.0.100",
+        "port": "",
+        "tls": "",
         "clientid": "",
         "autoConnect": true,
         "usetls": false,
-        "protocolVersion": "4",
+        "protocolVersion": "3",
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
@@ -204,6 +260,73 @@
         "collapse": false
     },
     {
+        "id": "6e83a0b6e22569c1",
+        "type": "ui_audio",
+        "z": "84ead1b4aafb92cf",
+        "name": "",
+        "group": "b9f213db.1f6bc",
+        "voice": "en-GB",
+        "always": false,
+        "x": 820,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1fa96b758f664dc6",
+        "type": "function",
+        "z": "84ead1b4aafb92cf",
+        "name": "generate message",
+        "func": "if (flow.get('$parent.SYSTEM_SOUNDS_VARIABLE')) {\n\n    switch (msg.topic) {\n        case \"SW_1\":\n            msg.payload = `Air Pump is ${msg.payload ? \"ON\" : \"OFF\"}`;\n            break;\n        case \"SW_2\":\n            msg.payload = `Lighting is ${msg.payload ? \"ON\" : \"OFF\"}`;\n            break;\n        case \"SW_3\":\n            msg.payload = `\"Water Filter is ${msg.payload ? \"ON\" : \"OFF\"}`;\n            break;\n        case \"SW_4\":\n            msg.payload = `Heater is ${msg.payload ? \"ON\" : \"OFF\"}`;\n            break;\n        case \"automaticModeSwitch\":\n            msg.payload = `Automatic mode ${msg.payload ? \"enabled\" : \"disabled\"}`;\n            break;\n        case \"systemSoundsSwitch\":\n            msg.payload = `System sound ${msg.payload ? \"enabled\" : \"disabled\"}`;\n            break;\n        case \"tempretureSlider\":\n            var degrees = msg.payload;\n            msg.payload = \"Temperature is set to \" + degrees + \" degrees\";\n            break;\n        default:\n            break;\n    }\n    \n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "6e83a0b6e22569c1"
+            ]
+        ]
+    },
+    {
+        "id": "609e9819ae9fd155",
+        "type": "function",
+        "z": "32932201d882ccd9",
+        "name": "Guard agains disabled automatic mode",
+        "func": "if (flow.get('$parent.AUTOMATIC_MODE_VARIABLE')) {\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "47823feef24f1614"
+            ]
+        ]
+    },
+    {
+        "id": "47823feef24f1614",
+        "type": "function",
+        "z": "32932201d882ccd9",
+        "name": "Guard agains not scheduled devices",
+        "func": "if (msg !== undefined && msg.topic !== undefined) {\n\n    var schedulerOutput = '0';\n\n    switch (msg.topic) {\n        case 'Air Pump':\n            schedulerOutput = '0';\n            break;\n        case 'Lighting':\n            schedulerOutput = '1';\n            break;\n        case 'Water Filter':\n            schedulerOutput = '2';\n            break;\n        case 'Heater':\n            schedulerOutput = '3';\n            break;\n    }\n\n    let availableShedules = flow.get('$parent.ENABLED_SHEDULE_OUTPUTS_VARIABLE') || [];\n    let hasShedule = availableShedules.indexOf(schedulerOutput) >= 0;\n\n    if (hasShedule) {\n        msg.topic = schedulerOutput\n        return msg;\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "7b4ce337.967f8c",
         "type": "mqtt out",
         "z": "f0fb5bfb.b56118",
@@ -211,9 +334,14 @@
         "topic": "/aqua/controls/",
         "qos": "1",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "15c95d11.880f13",
-        "x": 1050,
-        "y": 1560,
+        "x": 790,
+        "y": 2540,
         "wires": []
     },
     {
@@ -222,13 +350,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "SW 1 - Air Pump",
+        "tooltip": "bla",
         "group": "4866fe40.826af",
         "order": 1,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "",
+        "topic": "SW_1",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -238,12 +368,13 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 430,
-        "y": 1560,
+        "animate": true,
+        "className": "",
+        "x": 820,
+        "y": 2320,
         "wires": [
             [
-                "134c87f2.b7fad8",
-                "429a1031.a2b1c"
+                "7957ceef32a55001"
             ]
         ]
     },
@@ -253,13 +384,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "SW 2 - Lighting",
+        "tooltip": "",
         "group": "4866fe40.826af",
         "order": 2,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "",
+        "topic": "SW_2",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -269,12 +402,13 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 420,
-        "y": 1600,
+        "animate": true,
+        "className": "",
+        "x": 820,
+        "y": 2360,
         "wires": [
             [
-                "88475a3.175dca8",
-                "c684455a.6e9218"
+                "13f38e6b841ceda8"
             ]
         ]
     },
@@ -282,23 +416,28 @@
         "id": "154bd42c.d99f0c",
         "type": "ui_slider",
         "z": "f0fb5bfb.b56118",
-        "name": "",
-        "label": "Set Temp",
+        "name": "UI tempreture slider",
+        "label": "Set tempreture",
+        "tooltip": "",
         "group": "b9f213db.1f6bc",
-        "order": 5,
+        "order": 9,
         "width": 0,
         "height": 0,
         "passthru": true,
-        "topic": "",
+        "outs": "all",
+        "topic": "tempretureSlider",
+        "topicType": "str",
         "min": "10",
         "max": "35",
         "step": ".5",
-        "x": 380,
-        "y": 1320,
+        "className": "",
+        "x": 530,
+        "y": 1820,
         "wires": [
             [
                 "f9af4c11.402dd",
-                "61619854.9bd768"
+                "51439690fe24d658",
+                "c12fc5e3f4910eb8"
             ]
         ]
     },
@@ -307,15 +446,16 @@
         "type": "ui_text",
         "z": "f0fb5bfb.b56118",
         "group": "b9f213db.1f6bc",
-        "order": 4,
+        "order": 8,
         "width": 0,
         "height": 0,
-        "name": "UI set to",
+        "name": "UI tempreture value",
         "label": "Temperature set to",
         "format": "{{msg.payload}} °C",
         "layout": "row-spread",
-        "x": 540,
-        "y": 1380,
+        "className": "",
+        "x": 770,
+        "y": 1820,
         "wires": []
     },
     {
@@ -324,13 +464,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "SW 3 - Water Filter",
+        "tooltip": "",
         "group": "4866fe40.826af",
         "order": 3,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "",
+        "topic": "SW_3",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -340,12 +482,13 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 430,
-        "y": 1640,
+        "animate": true,
+        "className": "",
+        "x": 830,
+        "y": 2400,
         "wires": [
             [
-                "dc369a3d.0f8bd8",
-                "456a6998.363748"
+                "ebf2022e0f924915"
             ]
         ]
     },
@@ -355,13 +498,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "Automatic mode",
+        "tooltip": "",
         "group": "b9f213db.1f6bc",
-        "order": 3,
+        "order": 6,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "pumpStatus",
+        "topic": "automaticModeSwitch",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -371,11 +516,14 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 220,
-        "y": 1260,
+        "animate": true,
+        "className": "",
+        "x": 520,
+        "y": 1660,
         "wires": [
             [
-                "6a4c033f.9e6a1c"
+                "356f2e17a86f670a",
+                "67a80b29afedc99d"
             ]
         ]
     },
@@ -384,16 +532,18 @@
         "type": "ui_template",
         "z": "f0fb5bfb.b56118",
         "group": "b9f213db.1f6bc",
-        "name": "Description",
-        "order": 1,
+        "name": "Description, application settings",
+        "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<h3>Control the water temperature automatically.</h3>",
+        "format": "<p>\n    Application related settings\n</p>\n<p>\n   Enable smart control, setup temprature target, scheduling times, etc..\n</p>",
         "storeOutMessages": false,
         "fwdInMessages": false,
+        "resendOnRefresh": false,
         "templateScope": "local",
-        "x": 210,
-        "y": 1140,
+        "className": "",
+        "x": 250,
+        "y": 1440,
         "wires": [
             []
         ]
@@ -404,13 +554,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "SW 4 - Heater",
+        "tooltip": "",
         "group": "4866fe40.826af",
         "order": 3,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "",
+        "topic": "SW_4",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -420,12 +572,13 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 420,
-        "y": 1680,
+        "animate": true,
+        "className": "",
+        "x": 820,
+        "y": 2440,
         "wires": [
             [
-                "94a9ba80.a1d528",
-                "1f82f139.b9b52f"
+                "b517ab53146a4e8f"
             ]
         ]
     },
@@ -435,8 +588,8 @@
         "z": "f0fb5bfb.b56118",
         "name": "Control buttons",
         "info": "",
-        "x": 180,
-        "y": 1480,
+        "x": 140,
+        "y": 2260,
         "wires": []
     },
     {
@@ -450,133 +603,13 @@
         "wires": []
     },
     {
-        "id": "134c87f2.b7fad8",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n    \nif(msg.payload){\n    msg.payload = \"Air Pump is ON\";\n    msg.toPublish = {\"SW_1\": 0};\n}\nelse{\n    msg.payload = \"Air Pump is OFF\";\n    msg.toPublish = {\"SW_1\": 1};\n}\n\nreturn msg;\n\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 770,
-        "y": 1740,
-        "wires": [
-            [
-                "cac76f85.3af7a"
-            ]
-        ]
-    },
-    {
-        "id": "cac76f85.3af7a",
-        "type": "ui_audio",
-        "z": "f0fb5bfb.b56118",
-        "name": "",
-        "group": "4866fe40.826af",
-        "voice": "en-GB",
-        "always": false,
-        "x": 980,
-        "y": 1700,
-        "wires": []
-    },
-    {
-        "id": "88475a3.175dca8",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n   \n   \nif(msg.payload){\n    msg.payload = \"Lighting is ON\";\n}\nelse {\n    msg.payload = \"Lighting is OFF\";\n}\n\nreturn msg;\n\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 770,
-        "y": 1780,
-        "wires": [
-            [
-                "cac76f85.3af7a"
-            ]
-        ]
-    },
-    {
-        "id": "dc369a3d.0f8bd8",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n   \nif(msg.payload){\n    msg.payload = \"Water Filter is ON\";\n}\nelse {\n    msg.payload = \"Water Filter is OFF\";\n}\n\nreturn msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 770,
-        "y": 1820,
-        "wires": [
-            [
-                "cac76f85.3af7a"
-            ]
-        ]
-    },
-    {
-        "id": "94a9ba80.a1d528",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n   \nif(msg.payload){\n    msg.payload = \"Heater is ON\";\n}\nelse {\n    msg.payload = \"Heater is OFF\";\n}\n\nreturn msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 770,
-        "y": 1860,
-        "wires": [
-            [
-                "cac76f85.3af7a"
-            ]
-        ]
-    },
-    {
-        "id": "61619854.9bd768",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n   \nvar degrees = msg.payload;\n\nmsg.payload = \"Temperature is set to \" + degrees + \" degrees\";\n\nreturn msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 550,
-        "y": 1320,
-        "wires": [
-            [
-                "9729a138.71561"
-            ]
-        ]
-    },
-    {
-        "id": "6a4c033f.9e6a1c",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "audio msg",
-        "func": "var SystemSounds = global.get(\"SystemSounds\");\n\nif(SystemSounds){\n   \nif(msg.payload){\n    msg.payload = \"Automatic control switched on\";\n}\nelse {\n    msg.payload = \"Switched to manual control\";\n}\n\nreturn msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 550,
-        "y": 1260,
-        "wires": [
-            [
-                "9729a138.71561"
-            ]
-        ]
-    },
-    {
-        "id": "9729a138.71561",
-        "type": "ui_audio",
-        "z": "f0fb5bfb.b56118",
-        "name": "",
-        "group": "b9f213db.1f6bc",
-        "voice": "en-GB",
-        "always": false,
-        "x": 760,
-        "y": 1260,
-        "wires": []
-    },
-    {
         "id": "f4024f1c.6d875",
         "type": "comment",
         "z": "f0fb5bfb.b56118",
         "name": "Aquarium stats",
         "info": "",
-        "x": 180,
-        "y": 880,
+        "x": 140,
+        "y": 1200,
         "wires": []
     },
     {
@@ -590,8 +623,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 520,
-        "y": 80,
+        "x": 1220,
+        "y": 1860,
         "wires": [
             []
         ]
@@ -602,8 +635,8 @@
         "z": "f0fb5bfb.b56118",
         "name": "TODO: fix",
         "info": "",
-        "x": 360,
-        "y": 80,
+        "x": 1200,
+        "y": 1820,
         "wires": []
     },
     {
@@ -613,17 +646,17 @@
         "name": "Device info ",
         "info": "",
         "x": 120,
-        "y": 128,
+        "y": 420,
         "wires": []
     },
     {
         "id": "e9158f82.f1e5f",
         "type": "comment",
         "z": "f0fb5bfb.b56118",
-        "name": "Control Mode",
+        "name": "Settings",
         "info": "",
-        "x": 170,
-        "y": 1080,
+        "x": 120,
+        "y": 1380,
         "wires": []
     },
     {
@@ -638,8 +671,8 @@
         "label": "Uptime",
         "format": "{{msg.payload.uptimeAsString}}",
         "layout": "row-spread",
-        "x": 920,
-        "y": 188,
+        "x": 1020,
+        "y": 480,
         "wires": []
     },
     {
@@ -650,8 +683,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 421,
-        "y": 189,
+        "x": 470,
+        "y": 480,
         "wires": [
             [
                 "13f0bc3f.3ec374",
@@ -683,8 +716,8 @@
         "label": "Arch",
         "format": "{{msg.payload.arch}}",
         "layout": "row-spread",
-        "x": 910,
-        "y": 228,
+        "x": 1010,
+        "y": 520,
         "wires": []
     },
     {
@@ -699,8 +732,8 @@
         "label": "Firmware Id",
         "format": "{{msg.payload.fw_id}}",
         "layout": "row-spread",
-        "x": 930,
-        "y": 268,
+        "x": 1030,
+        "y": 560,
         "wires": []
     },
     {
@@ -715,8 +748,8 @@
         "label": "App",
         "format": "{{msg.payload.app}}",
         "layout": "row-spread",
-        "x": 910,
-        "y": 308,
+        "x": 1010,
+        "y": 600,
         "wires": []
     },
     {
@@ -731,8 +764,8 @@
         "label": "FS free",
         "format": "{{msg.payload.fs_free/1000}} kB",
         "layout": "row-spread",
-        "x": 920,
-        "y": 348,
+        "x": 1020,
+        "y": 640,
         "wires": []
     },
     {
@@ -747,8 +780,8 @@
         "label": "FS size",
         "format": "{{msg.payload.fs_size/1000}} kB",
         "layout": "row-spread",
-        "x": 920,
-        "y": 388,
+        "x": 1020,
+        "y": 680,
         "wires": []
     },
     {
@@ -763,8 +796,8 @@
         "label": "RAM free min",
         "format": "{{msg.payload.ram_min_free/1000}} kB",
         "layout": "row-spread",
-        "x": 940,
-        "y": 428,
+        "x": 1040,
+        "y": 720,
         "wires": []
     },
     {
@@ -779,8 +812,8 @@
         "label": "RAM free",
         "format": "{{msg.payload.ram_free/1000}} kB",
         "layout": "row-spread",
-        "x": 920,
-        "y": 468,
+        "x": 1020,
+        "y": 760,
         "wires": []
     },
     {
@@ -795,8 +828,8 @@
         "label": "RAM size",
         "format": "{{msg.payload.ram_size/1000}} kB",
         "layout": "row-spread",
-        "x": 920,
-        "y": 508,
+        "x": 1020,
+        "y": 800,
         "wires": []
     },
     {
@@ -811,8 +844,8 @@
         "label": "MAC address",
         "format": "{{msg.payload.mac}}",
         "layout": "row-spread",
-        "x": 940,
-        "y": 548,
+        "x": 1040,
+        "y": 840,
         "wires": []
     },
     {
@@ -827,8 +860,8 @@
         "label": "WiFI ssid",
         "format": "{{msg.payload.wifi.ssid}}",
         "layout": "row-spread",
-        "x": 920,
-        "y": 588,
+        "x": 1020,
+        "y": 880,
         "wires": []
     },
     {
@@ -843,8 +876,9 @@
         "label": "WiFI status",
         "format": "{{msg.payload.wifi.status}}",
         "layout": "row-spread",
-        "x": 930,
-        "y": 628,
+        "className": "",
+        "x": 1030,
+        "y": 920,
         "wires": []
     },
     {
@@ -859,8 +893,8 @@
         "label": "WiFI ap_ip",
         "format": "{{msg.payload.wifi.ap_ip}}",
         "layout": "row-spread",
-        "x": 930,
-        "y": 668,
+        "x": 1030,
+        "y": 960,
         "wires": []
     },
     {
@@ -875,77 +909,9 @@
         "label": "WiFI IP",
         "format": "{{msg.payload.wifi.sta_ip}}",
         "layout": "row-spread",
-        "x": 920,
-        "y": 708,
+        "x": 1020,
+        "y": 1000,
         "wires": []
-    },
-    {
-        "id": "c684455a.6e9218",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "pub msg",
-        "func": "if(msg.payload){\n    msg.payload = {\"SW_2\": 0};\n}\nelse {\n   msg.payload = { \"SW_2\": 1};\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 760,
-        "y": 1600,
-        "wires": [
-            [
-                "7b4ce337.967f8c"
-            ]
-        ]
-    },
-    {
-        "id": "456a6998.363748",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "pub msg",
-        "func": "if(msg.payload){\n    msg.payload = {\"SW_3\": 0};\n}\nelse {\n   msg.payload = { \"SW_3\": 1};\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 760,
-        "y": 1640,
-        "wires": [
-            [
-                "7b4ce337.967f8c"
-            ]
-        ]
-    },
-    {
-        "id": "1f82f139.b9b52f",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "pub msg",
-        "func": "if(msg.payload){\n    msg.payload = {\"SW_4\": 0};\n}\nelse {\n   msg.payload = { \"SW_4\": 1};\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 760,
-        "y": 1680,
-        "wires": [
-            [
-                "7b4ce337.967f8c"
-            ]
-        ]
-    },
-    {
-        "id": "429a1031.a2b1c",
-        "type": "function",
-        "z": "f0fb5bfb.b56118",
-        "name": "pub msg",
-        "func": "if(msg.payload){\n    msg.payload = {\"SW_1\": 0};\n}\nelse {\n   msg.payload = { \"SW_1\": 1};\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 760,
-        "y": 1560,
-        "wires": [
-            [
-                "7b4ce337.967f8c"
-            ]
-        ]
     },
     {
         "id": "f44c9152.b470f",
@@ -969,8 +935,8 @@
         ],
         "seg1": "22",
         "seg2": "30",
-        "x": 950,
-        "y": 940,
+        "x": 1030,
+        "y": 1260,
         "wires": []
     },
     {
@@ -1008,8 +974,8 @@
             "#c5b0d5"
         ],
         "outputs": 2,
-        "x": 970,
-        "y": 1020,
+        "x": 1050,
+        "y": 1340,
         "wires": [
             [],
             []
@@ -1051,8 +1017,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 950,
-        "y": 980,
+        "x": 1030,
+        "y": 1300,
         "wires": [
             []
         ]
@@ -1073,8 +1039,8 @@
         "randomUnits": "seconds",
         "drop": true,
         "outputs": 1,
-        "x": 780,
-        "y": 980,
+        "x": 820,
+        "y": 1300,
         "wires": [
             [
                 "9df2ed87.4fe81"
@@ -1089,8 +1055,8 @@
         "func": "var value = msg.payload.temperature;\n\nmsg.payload = value.toFixed(2);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 600,
-        "y": 940,
+        "x": 620,
+        "y": 1260,
         "wires": [
             [
                 "f44c9152.b470f",
@@ -1108,7 +1074,7 @@
         "action": "",
         "pretty": false,
         "x": 450,
-        "y": 940,
+        "y": 1260,
         "wires": [
             [
                 "178faa65.5c8066"
@@ -1131,8 +1097,8 @@
         "randomUnits": "seconds",
         "drop": true,
         "outputs": 1,
-        "x": 780,
-        "y": 1020,
+        "x": 820,
+        "y": 1340,
         "wires": [
             [
                 "aac8be38.91ff5"
@@ -1149,8 +1115,8 @@
         "datatype": "auto",
         "broker": "15c95d11.880f13",
         "inputs": 0,
-        "x": 250,
-        "y": 940,
+        "x": 230,
+        "y": 1260,
         "wires": [
             [
                 "aacaee0a.59d23"
@@ -1163,13 +1129,15 @@
         "z": "f0fb5bfb.b56118",
         "name": "",
         "label": "System Sounds",
+        "tooltip": "",
         "group": "b9f213db.1f6bc",
-        "order": 2,
+        "order": 4,
         "width": "0",
         "height": "0",
         "passthru": true,
         "decouple": "false",
-        "topic": "SystemSounds",
+        "topic": "systemSoundsSwitch",
+        "topicType": "str",
         "style": "",
         "onvalue": "true",
         "onvalueType": "bool",
@@ -1179,31 +1147,14 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 220,
-        "y": 1200,
+        "animate": true,
+        "className": "",
+        "x": 520,
+        "y": 1580,
         "wires": [
             [
-                "e5459bb2.4876a8"
-            ]
-        ]
-    },
-    {
-        "id": "be05363.2479fc8",
-        "type": "inject",
-        "z": "f0fb5bfb.b56118",
-        "name": "init temp at start",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "25",
-        "payloadType": "num",
-        "x": 220,
-        "y": 1320,
-        "wires": [
-            [
-                "154bd42c.d99f0c"
+                "e5459bb2.4876a8",
+                "3bf74c154481e63a"
             ]
         ]
     },
@@ -1219,8 +1170,8 @@
         "label": "Last Update",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 930,
-        "y": 748,
+        "x": 1030,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1231,8 +1182,8 @@
         "func": "var time = new Date();\nvar year = time.getFullYear();\nvar month = time.getMonth()+1;\nvar date1 = time.getDate();\nvar hour = time.getHours();\nvar minutes = time.getMinutes();\nvar seconds = time.getSeconds();\n\nmsg.payload = (year + \"-\" + month + \"-\"+date1+\" \"+hour+\":\"+minutes+\":\"+seconds + \" UTC\");\n\n\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 432,
-        "y": 268,
+        "x": 490,
+        "y": 520,
         "wires": [
             [
                 "c97421eb.10852"
@@ -1243,56 +1194,17 @@
         "id": "e5459bb2.4876a8",
         "type": "function",
         "z": "f0fb5bfb.b56118",
-        "name": "Global var",
-        "func": "var SystemSounds = msg.payload;\n\nglobal.set('SystemSounds', SystemSounds); ",
+        "name": "set SYSTEM_SOUNDS_VARIABLE",
+        "func": "flow.set('SYSTEM_SOUNDS_VARIABLE', msg.payload); ",
         "outputs": 1,
         "noerr": 0,
-        "x": 550,
-        "y": 1200,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 1580,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "cfe4f39d.dc5a",
-        "type": "inject",
-        "z": "f0fb5bfb.b56118",
-        "name": "init at start - ON",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "30",
-        "topic": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "x": 200,
-        "y": 1600,
-        "wires": [
-            [
-                "3d3941a4.7e265e",
-                "e4780e31.5909d"
-            ]
-        ]
-    },
-    {
-        "id": "ba49ffa5.c2453",
-        "type": "inject",
-        "z": "f0fb5bfb.b56118",
-        "name": "init at start - OFF",
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "32",
-        "topic": "",
-        "payload": "false",
-        "payloadType": "bool",
-        "x": 210,
-        "y": 1560,
-        "wires": [
-            [
-                "4d5851a.32c52b",
-                "e4c4af0f.6fff6"
-            ]
         ]
     },
     {
@@ -1317,8 +1229,8 @@
         ],
         "seg1": "55",
         "seg2": "70",
-        "x": 930,
-        "y": 788,
+        "x": 1030,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1343,8 +1255,8 @@
         ],
         "seg1": "55",
         "seg2": "70",
-        "x": 920,
-        "y": 828,
+        "x": 1020,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1355,8 +1267,8 @@
         "func": "// Uptime human readable \nfunction timeConversion(millisec) {\n    var seconds = (millisec / 1000).toFixed(1);\n    var minutes = (millisec / (1000 * 60)).toFixed(1);\n    var hours = (millisec / (1000 * 60 * 60)).toFixed(1);\n    var days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);\n\n    if (seconds < 60) {\n        return seconds + \" Sec\";\n    } else if (minutes < 60) {\n        return minutes + \" Min\";\n    } else if (hours < 24) {\n        return hours + \" Hrs\";\n    } else {\n        return days + \" Days\"\n    }\n}\n\n// Free RAM/FS percentage\nfunction calcPercentageFromTotal(valueToConvert, totalValue) {\n    var value = ((valueToConvert / totalValue) * 100);\n    return Math.round( value * 1e1 ) / 1e1;\n}\n\nmsg.payload.uptimeAsString = timeConversion(msg.payload.uptime * 1000);\nmsg.payload.freeRAMPercentage = calcPercentageFromTotal(msg.payload.ram_free, msg.payload.ram_size);\nmsg.payload.freeFSPercentage = calcPercentageFromTotal(msg.payload.fs_free, msg.payload.fs_size);\n\n// Dont need the whole WIFI obj\nmsg.payload.wifi = msg.payload.wifi.sta_ip;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 420,
-        "y": 320,
+        "x": 480,
+        "y": 560,
         "wires": [
             [
                 "e78613bd.89839",
@@ -1377,12 +1289,720 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 200,
-        "y": 188,
+        "x": 240,
+        "y": 472,
         "wires": [
             [
                 "eb5ff3cb.ad711",
                 "f5277a6f.71abb8"
+            ]
+        ]
+    },
+    {
+        "id": "79a2eb9cd95df44f",
+        "type": "ui_time_scheduler",
+        "z": "f0fb5bfb.b56118",
+        "group": "b9f213db.1f6bc",
+        "name": "Schedular",
+        "startDay": "1",
+        "refresh": "10",
+        "devices": [
+            "Air Pump",
+            "Lighting",
+            "Water Filter",
+            "Heater"
+        ],
+        "singleOff": true,
+        "onlySendChange": true,
+        "customPayload": false,
+        "eventMode": false,
+        "eventOptions": [],
+        "sendTopic": true,
+        "lat": "",
+        "lon": "",
+        "customContextStore": "",
+        "outputs": 5,
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "x": 240,
+        "y": 2060,
+        "wires": [
+            [
+                "04cae871065b8015",
+                "f1817772088bc2ef"
+            ],
+            [
+                "f30a275a81bedcfa"
+            ],
+            [
+                "f30a275a81bedcfa"
+            ],
+            [
+                "f30a275a81bedcfa"
+            ],
+            [
+                "f30a275a81bedcfa"
+            ]
+        ],
+        "outputLabels": [
+            "",
+            "SW1",
+            "SW2",
+            "SW3",
+            "SW4"
+        ]
+    },
+    {
+        "id": "34ebb8497ed6dcd7",
+        "type": "ui_template",
+        "z": "f0fb5bfb.b56118",
+        "group": "b9f213db.1f6bc",
+        "name": "Description, schedular settings",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "format": "<p class=\"label nr-dashboard-chart-title nr-dashboard-chart-titlel\">\n    Schedular\n</p>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 250,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aafecc893cd859d1",
+        "type": "ui_template",
+        "z": "f0fb5bfb.b56118",
+        "group": "b9f213db.1f6bc",
+        "name": "Description, general settings",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "format": "<p class=\"label nr-dashboard-chart-title nr-dashboard-chart-titlel\">\n    General\n</p>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 240,
+        "y": 1520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "745497cda6c78cb1",
+        "type": "ui_template",
+        "z": "f0fb5bfb.b56118",
+        "group": "b9f213db.1f6bc",
+        "name": "Description, tempretures settings",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "format": "<p class=\"label nr-dashboard-chart-title nr-dashboard-chart-titlel\">\n    Tempretures <span>&#128679;</span>\n</p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 260,
+        "y": 1760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6523140ee96ed19a",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "generate topic and set variable",
+        "func": "var topic = msg.topic;\nvar payload = msg.payload; \n\nif (payload) {\n    msg.payload = { [topic]: 0 };\n}\nelse {\n    msg.payload = { [topic]: 1 };\n}\n\nflow.set(topic, payload);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 2540,
+        "wires": [
+            [
+                "7b4ce337.967f8c"
+            ]
+        ]
+    },
+    {
+        "id": "5900aa461e5065af",
+        "type": "subflow:84ead1b4aafb92cf",
+        "z": "f0fb5bfb.b56118",
+        "name": "",
+        "x": 1200,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "356f2e17a86f670a",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "set AUTOMATIC_MODE_VARIABLE",
+        "func": "flow.set('AUTOMATIC_MODE_VARIABLE', msg.payload); ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 1660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b517ab53146a4e8f",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "SW4 out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2",
+            "4fb9bf5026c919d5"
+        ],
+        "x": 995,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "46c9bbfab1eb6ca2",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "audio in",
+        "links": [
+            "13f38e6b841ceda8",
+            "3bf74c154481e63a",
+            "51439690fe24d658",
+            "67a80b29afedc99d",
+            "7957ceef32a55001",
+            "b517ab53146a4e8f",
+            "ebf2022e0f924915"
+        ],
+        "x": 1095,
+        "y": 1580,
+        "wires": [
+            [
+                "5900aa461e5065af"
+            ]
+        ]
+    },
+    {
+        "id": "ebf2022e0f924915",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "SW3 out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2",
+            "4fb9bf5026c919d5"
+        ],
+        "x": 995,
+        "y": 2400,
+        "wires": []
+    },
+    {
+        "id": "13f38e6b841ceda8",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "SW2 out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2",
+            "4fb9bf5026c919d5"
+        ],
+        "x": 995,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "7957ceef32a55001",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "SW1 out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2",
+            "4fb9bf5026c919d5"
+        ],
+        "x": 995,
+        "y": 2320,
+        "wires": []
+    },
+    {
+        "id": "51439690fe24d658",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "tempretureSlider out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2"
+        ],
+        "x": 705,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "3bf74c154481e63a",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "systemSoundsSwitch out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2"
+        ],
+        "x": 695,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "67a80b29afedc99d",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "automaticModeSwitch out",
+        "mode": "link",
+        "links": [
+            "46c9bbfab1eb6ca2"
+        ],
+        "x": 695,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "a17f4b4c6838b343",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "init tempretureSlider in",
+        "links": [
+            "92a58a680393608f"
+        ],
+        "x": 195,
+        "y": 1820,
+        "wires": [
+            [
+                "923840690125bfd1"
+            ]
+        ]
+    },
+    {
+        "id": "923840690125bfd1",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('DEFAULT_TEMPRETURE_VARIABLE');\nreturn msg;\n\n\n\n \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1820,
+        "wires": [
+            [
+                "154bd42c.d99f0c"
+            ]
+        ]
+    },
+    {
+        "id": "caef935c0d51533d",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "init systemSoundsSwitch in",
+        "links": [
+            "92a58a680393608f"
+        ],
+        "x": 195,
+        "y": 1580,
+        "wires": [
+            [
+                "f0ffad2fa93c1fcc"
+            ]
+        ]
+    },
+    {
+        "id": "9049fdcaae886c31",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "init automaticModeSwitch in",
+        "links": [
+            "92a58a680393608f"
+        ],
+        "x": 195,
+        "y": 1660,
+        "wires": [
+            [
+                "054650a1d0796593"
+            ]
+        ]
+    },
+    {
+        "id": "f0ffad2fa93c1fcc",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('SYSTEM_SOUNDS_VARIABLE');\nreturn msg;\n\n\n\n \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1580,
+        "wires": [
+            [
+                "37f89023.0697f"
+            ]
+        ]
+    },
+    {
+        "id": "054650a1d0796593",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('AUTOMATIC_MODE_VARIABLE');\nreturn msg;\n\n\n\n \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 1660,
+        "wires": [
+            [
+                "5bb9bb3f.03efd4"
+            ]
+        ]
+    },
+    {
+        "id": "f51cf00e2b03379b",
+        "type": "inject",
+        "z": "f0fb5bfb.b56118",
+        "name": "init at start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "583b8b1ebab18eba"
+            ]
+        ]
+    },
+    {
+        "id": "583b8b1ebab18eba",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "set DEFAULT FLOW VARIABLES",
+        "func": "const flowVariables = [\n    {\n        Name: \"DEFAULT_TEMPRETURE_VARIABLE\",\n        Value: 22\n    },\n    {\n        Name: \"SYSTEM_SOUNDS_VARIABLE\",\n        Value: false\n    },\n    {\n        Name: \"AUTOMATIC_MODE_VARIABLE\",\n        Value: true\n    },\n    {\n        Name: \"SW_1\",\n        Value: true\n    },\n    {\n        Name: \"SW_2\",\n        Value: false\n    },\n    {\n        Name: \"SW_3\",\n        Value: true\n    },\n    {\n        Name: \"SW_1\",\n        Value: false\n    }\n];\n\nflowVariables.forEach(function (obj) {\n    if (flow.get(obj.Name) === undefined) {\n        flow.set(obj.Name, obj.Value);\n    }\n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "92a58a680393608f"
+            ]
+        ]
+    },
+    {
+        "id": "92a58a680393608f",
+        "type": "link out",
+        "z": "f0fb5bfb.b56118",
+        "name": "flow variables out",
+        "mode": "link",
+        "links": [
+            "9049fdcaae886c31",
+            "90b946790a3c3c5f",
+            "a17f4b4c6838b343",
+            "caef935c0d51533d"
+        ],
+        "x": 665,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "90b946790a3c3c5f",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "init controls in",
+        "links": [
+            "92a58a680393608f"
+        ],
+        "x": 195,
+        "y": 2320,
+        "wires": [
+            [
+                "c61af47e73089e2e",
+                "dc8977f69bbe1feb",
+                "0643570f92991ca1",
+                "721052b6dd2dec17"
+            ]
+        ]
+    },
+    {
+        "id": "c61af47e73089e2e",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('SW_1');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2320,
+        "wires": [
+            [
+                "e4c4af0f.6fff6"
+            ]
+        ]
+    },
+    {
+        "id": "dc8977f69bbe1feb",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('SW_2');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2360,
+        "wires": [
+            [
+                "e4780e31.5909d"
+            ]
+        ]
+    },
+    {
+        "id": "0643570f92991ca1",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('SW_3');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2400,
+        "wires": [
+            [
+                "3d3941a4.7e265e"
+            ]
+        ]
+    },
+    {
+        "id": "721052b6dd2dec17",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "get variable",
+        "func": "msg.payload = flow.get('SW_4');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2440,
+        "wires": [
+            [
+                "4d5851a.32c52b"
+            ]
+        ]
+    },
+    {
+        "id": "4fb9bf5026c919d5",
+        "type": "link in",
+        "z": "f0fb5bfb.b56118",
+        "name": "switches to topic in",
+        "links": [
+            "13f38e6b841ceda8",
+            "7957ceef32a55001",
+            "b517ab53146a4e8f",
+            "ebf2022e0f924915"
+        ],
+        "x": 305,
+        "y": 2540,
+        "wires": [
+            [
+                "6523140ee96ed19a"
+            ]
+        ]
+    },
+    {
+        "id": "f30a275a81bedcfa",
+        "type": "subflow:32932201d882ccd9",
+        "z": "f0fb5bfb.b56118",
+        "name": "",
+        "x": 490,
+        "y": 2120,
+        "wires": [
+            [
+                "e4c4af0f.6fff6",
+                "19020a3dded47d21",
+                "37960ac905cf58d1"
+            ]
+        ]
+    },
+    {
+        "id": "04cae871065b8015",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "set ENABLED_SHEDULE_OUTPUTS_VARIABLE",
+        "func": "// set variable that indicates whatever\n// the controlled unit has an event\n\n// this is required because shedular \n// outputs all the defined devices state\n// check \"can control\" node for environment usage.\n\nlet jsonPayload = JSON.parse(msg.payload);\nlet onlyOutputs = jsonPayload.timers.map(t => t.output);\nlet uniqueItems = [...new Set(onlyOutputs)]\n\nflow.set('ENABLED_SHEDULE_OUTPUTS_VARIABLE', uniqueItems)\n\nmsg.payload = uniqueItems;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 2040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19020a3dded47d21",
+        "type": "switch",
+        "z": "f0fb5bfb.b56118",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 4,
+        "x": 530,
+        "y": 2240,
+        "wires": [
+            [
+                "e4c4af0f.6fff6"
+            ],
+            [
+                "e4780e31.5909d"
+            ],
+            [
+                "3d3941a4.7e265e"
+            ],
+            [
+                "4d5851a.32c52b"
+            ]
+        ]
+    },
+    {
+        "id": "c12fc5e3f4910eb8",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "set DEFAULT_TEMPRETURE_VARIABLE",
+        "func": "flow.set('DEFAULT_TEMPRETURE_VARIABLE', msg.payload); ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "37960ac905cf58d1",
+        "type": "debug",
+        "z": "f0fb5bfb.b56118",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 2120,
+        "wires": []
+    },
+    {
+        "id": "c8c0a61b1c121bfc",
+        "type": "debug",
+        "z": "f0fb5bfb.b56118",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "f1817772088bc2ef",
+        "type": "function",
+        "z": "f0fb5bfb.b56118",
+        "name": "JSON Parse",
+        "func": "return JSON.parse(msg);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 2080,
+        "wires": [
+            [
+                "c8c0a61b1c121bfc"
             ]
         ]
     },
@@ -1494,6 +2114,9 @@
         "func": "msg.payload = msg.payload.hostname;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 620,
         "y": 460,
         "wires": [
@@ -1764,6 +2387,9 @@
         "func": "\nmsg.payload = (msg.payload.size/1000000).toFixed(3);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 750,
         "y": 260,
         "wires": [
@@ -1780,6 +2406,9 @@
         "func": "\nmsg.payload = (msg.payload.used/1000000).toFixed(3);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 750,
         "y": 300,
         "wires": [
@@ -1796,6 +2425,9 @@
         "func": "msg.payload = (msg.payload.available/1000000).toFixed(3);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 750,
         "y": 340,
         "wires": [
@@ -1838,6 +2470,9 @@
         "func": "msg.payload = Math.floor(msg.payload.capacity*100);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 750,
         "y": 380,
         "wires": [

@@ -12,6 +12,13 @@ or the following image - [hub.docker.com/r/ayanew/aqualinks](https://hub.docker.
 docker run -p 1880:1880 -e MQTT_URL="yourIp" ayanew/aqualinks
 ```
 
+Or build locally
+
+```bash
+docker build -t aqualinks-test1 .
+docker run -p 1880:1880 -e MQTT_URL="yourIp" aqualinks-test1
+```
+
 **OBSOLETE!**
 
 Node-RED app to interacts with the MCU and provides user interface
